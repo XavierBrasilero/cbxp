@@ -1,52 +1,32 @@
-#include <iomanip>
+#include <cstdint>
 #include <iostream>
 #include <string>
 
-#include <stdint.h>
-#include <unistd.h>
 #include <ihapsa.h>
 
+#include "control_block_field_formatter.hpp"
+
 int main(void) {
-  // PSAPSA eye catcher
-  char psapsa[4];
+  CBExplorer::ControlBlockFieldFormatter formatter;
 
   // PSA starts at address 0
   struct psa *__ptr32 p_psa = 0;
 
-  // Copy PSAPSA eye catcher (4 bytes of EBCDIC encoded data)
-  std::memcpy(psapsa, p_psa->psapsa, 4);
-
-  // Get FLCSVILC field (unsigned 1-byte integer)
+  // Get fields
+  std::string psapsa = formatter.getString(p_psa->psapsa, 4);
   uint8_t flcsvilc = p_psa->flcsvilc;
+  std::string flcrnpsw_bitstring = formatter.getBitmap<uint32_t>(p_psa->flcrnpsw);
+  std::string flcrnpsw_hex = formatter.getHex<uint32_t>(p_psa->flcrnpsw+4);
+  std::string flccvt = formatter.getHex<uint32_t>(p_psa->flccvt);
+  std::string flcsopsw = formatter.getBitmap<uint64_t>(p_psa->flcsopsw);
 
-  // Covert PSAPSA eye catcher from EBCDIC to ASCII
-  __e2a_l(psapsa, 4);
-
-  std::cout << "PSA Eyecatcher: " << psapsa << std::endl;
+  // Print fields
+  std::cout << "PSAPSA: " << psapsa << std::endl;
   std::cout << "FLCSVILC: " << static_cast<int>(flcsvilc) << std::endl;
-
-  // FLCRNPSW bitstring and hex portion
-  uint32_t flcrnpsw_bitstring;
-  uint32_t flcrnpsw_hex;
-
-  // Copy first 4 bytes of FLCRNPSW to flcrnpsw_bitstring
-  // Copy the last 4 bytes of FLCRNPSW to flcrnpsw_hex
-  std::memcpy(reinterpret_cast<char *>(&flcrnpsw_bitstring), p_psa->flcrnpsw, 4);
-  std::memcpy(reinterpret_cast<char *>(&flcrnpsw_hex), p_psa->flcrnpsw+4, 4);
-
-  std::cout << "FLCRNPSW (bitstring portion 32-bit): " << std::bitset<32>{flcrnpsw_bitstring} << std::endl;
-  std::cout << "FLCRNPSW (hex portion 4-byte): 0x" << std::hex << std::setfill('0') << std::setw(8) << flcrnpsw_hex << std::endl;
-
-  // FLCCVT address and FLCSOPSW bitstring
-  uint32_t flccvt;
-  uint64_t flcsopsw;
-
-  // Copy FLCVT address and FLCSOPSW bitstring
-  std::memcpy(reinterpret_cast<char *>(&flccvt), p_psa->flccvt, 4);
-  std::memcpy(reinterpret_cast<char *>(&flcsopsw), p_psa->flcsopsw, 8);
-
-  std::cout << "FLCCVT (hex address 4-byte): 0x" << std::hex << std::setfill('0') << std::setw(8) << flccvt << std::endl;
-  std::cout << "FLCSOPSW (bitstirng 64-bit): " << std::bitset<64>{flcsopsw} << std::endl;
+  std::cout << "FLCRNPSW (bitstring portion 32-bit): " << flcrnpsw_bitstring << std::endl;
+  std::cout << "FLCRNPSW (hex portion 4-byte): " << flcrnpsw_hex << std::endl;
+  std::cout << "FLCCVT: " << flccvt << std::endl;
+  std::cout << "FLCSOPSW: " << flcsopsw << std::endl;
 
   return 0;
 }
