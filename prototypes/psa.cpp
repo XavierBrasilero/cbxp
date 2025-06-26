@@ -33,8 +33,8 @@ int main(void) {
   std::cout << "-------------------------------------------------" <<  std::endl;
   std::cout << "Varun Code: " <<  std::endl;
 
-  std::string psapsa = formatter.getString(p_psa->psapsa, 4);
-  std::cout << "PSAPSA: " << psapsa << std::endl;
+  //std::string psapsa = formatter.getString(p_psa->psapsa, 4);
+  //std::cout << "PSAPSA: " << psapsa << std::endl;
 
   std::string flcippsw = formatter.getString(p_psa->psapsa, 8);
   std::cout << "FLCIPPSW: " << flcippsw << std::endl;
