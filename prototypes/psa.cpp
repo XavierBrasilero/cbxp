@@ -28,5 +28,16 @@ int main(void) {
   std::cout << "FLCCVT: " << flccvt << std::endl;
   std::cout << "FLCSOPSW: " << flcsopsw << std::endl;
 
+  
+  std::cout << "-------------------------------------------------" <<  std::endl;
+  std::cout << "-------------------------------------------------" <<  std::endl;
+  std::cout << "Varun Code: " <<  std::endl;
+
+  std::string psapsa = formatter.getString(p_psa->psapsa, 4);
+  std::cout << "PSAPSA: " << psapsa << std::endl;
+
+  std::string flcippsw = formatter.getString(p_psa->psapsa, 8);
+  std::cout << "FLCIPPSW: " << flcippsw << std::endl;
+
   return 0;
 }
