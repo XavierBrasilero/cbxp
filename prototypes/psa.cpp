@@ -33,11 +33,17 @@ int main(void) {
   std::cout << "-------------------------------------------------" <<  std::endl;
   std::cout << "Varun Code: " <<  std::endl;
 
-  //std::string psapsa = formatter.getString(p_psa->psapsa, 4);
-  //std::cout << "PSAPSA: " << psapsa << std::endl;
 
-  std::string flcippsw = formatter.getString(p_psa->psapsa, 8);
+  std::cout << "PSAPSA: " << psapsa << std::endl;
+
+  std::string flcippsw = formatter.getString(p_psa->flcippsw, 8);
   std::cout << "FLCIPPSW: " << flcippsw << std::endl;
+
+  std::cout << "FLCRNPSW (bitstring portion 32-bit): " << flcrnpsw_bitstring << std::endl;
+  std::cout << "FLCRNPSW (hex portion 4-byte): " << flcrnpsw_hex << std::endl;
+
+  std::string flciccw1 = formatter.getString(p_psa->flciccw1, 8);
+  std::cout << "FLCICCW1: " << flciccw1 << std::endl;
 
   return 0;
 }
