@@ -45,7 +45,7 @@ int main(void) {
   std::string flciccw1 = formatter.getString(p_psa->flciccw1, 8);
   std::cout << "FLCICCW1: " << flciccw1 << std::endl;
 
-  std::string flcrnpsw_bitstring = formatter.getBitmap<uint64_t>(p_psa->flcropsw);
+  std::string flcropsw = formatter.getBitmap<uint64_t>(p_psa->flcropsw);
   std::cout << "FLCROPSW: " << flcropsw << std::endl;
 
   return 0;
