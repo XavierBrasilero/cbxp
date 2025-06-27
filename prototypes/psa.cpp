@@ -31,8 +31,8 @@ int main(void) {
     
   std::cout << "Important PSA Information: "  << std::endl;
 
-  //std::string flcarch = formatter.getHex<uint8_t>(p_psa->flcarch);
-  //std::cout << "FLCARCH: " << flcarch << std::endl;
+  std::string flcarch = formatter.getBitmap<uint8_t>(reinterpret_cast<char *>(&p_psa->flcarch));
+  std::cout << "FLCARCH: " << flcarch << std::endl;
 
   std::cout << "FLCCVT: " << flccvt << std::endl;
 
@@ -53,34 +53,29 @@ int main(void) {
   std::string psaecvt = formatter.getHex<uint64_t>(p_psa->psaecvt);
   std::cout << "PSAECVT: " << psaecvt << std::endl;
 
+  std::string psaflags = formatter.getBitmap<uint8_t>(reinterpret_cast<char *>(&p_psa->psaflags));
+  std::cout << "PSAFLAGS: " << psaflags << std::endl;
 
-  //std::string psaflags = formatter.getHex<uint8_t>(p_psa->psaflags);
-  //std::cout << "PSAFLAGS: " << psaflags << std::endl;
-
-  //std::string psafpfl = formatter.getBitmap<uint8_t>(p_psa->psafpfl);
-  //std::cout << "PSAFPFL: " << psafpfl << std::endl;
+  std::string psafpfl = formatter.getBitmap<uint8_t>(reinterpret_cast<char *>(&p_psa->psafpfl));
+  std::cout << "PSAFPFL: " << psafpfl << std::endl;
 
   std::string psalaa = formatter.getHex<uint32_t>(p_psa->psalaa);
   std::cout << "PSALAA: " << psalaa << std::endl;
 
-  //std::string psalccav = formatter.getHex<uint32_t>(p_psa->psalccav);
-  //std::cout << "PSALCCAV: " << psalccav << std::endl;
+  std::string psalccav = formatter.getHex<uint32_t>(&p_psa->psalccav);
+  std::cout << "PSALCCAV: " << psalccav << std::endl;
 
-  //std::string psasvtx = formatter.getHex<uint32_t>(p_psa->psasvtx);
-  //std::cout << "PSASVTX: " << psasvtx << std::endl;
-  
+  // Further Research Needed
+  // std::string psasvtx = formatter.getHex<uint32_t>(reinterpret_cast<char *>(0xB50));
+  // std::string psasvtx = formatter.getHex<uint32_t>(&p_psa->psasvtx);
+  // std::cout << "PSASVTX: " << psasvtx << std::endl;
+
   
   std::string psatold = formatter.getHex<uint32_t>(p_psa->psatold);
   std::cout << "PSATOLD: " << psatold << std::endl;
 
   std::string psatrvt = formatter.getHex<uint32_t>(p_psa->psatrvt);
   std::cout << "PSATRVT: " << psatrvt << std::endl;
-
-  //std::string psatx = formatter.getBitmap<uint8_t>(p_psa->psatx);
-  //std::cout << "PSATX: " << psatx << std::endl;
-
-  //std::string psatxc = formatter.getBitmap<uint8_t>(p_psa->psatxc);
-  //std::cout << "PSATXC: " << psatxc << std::endl;
 
   std::string psaval = formatter.getBitmap<uint16_t>(p_psa->psaval);
   std::cout << "PSAVAL: " << psaval << std::endl;
