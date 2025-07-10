@@ -70,7 +70,6 @@ int main(void) {
   // std::string psasvtx = formatter.getHex<uint32_t>(&p_psa->psasvtx);
   // std::cout << "PSASVTX: " << psasvtx << std::endl;
 
-  
   std::string psatold = formatter.getHex<uint32_t>(p_psa->psatold);
   std::cout << "PSATOLD: " << psatold << std::endl;
 
