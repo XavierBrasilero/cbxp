@@ -3,8 +3,9 @@
 #include <string>
 
 #include <ihapsa.h>
-
+#include <nlohmann/json.hpp>
 #include "control_block_field_formatter.hpp"
+
 
 int main(void) {
   CBExplorer::ControlBlockFieldFormatter formatter;
@@ -81,6 +82,17 @@ int main(void) {
 
   std::string psaxcvt = formatter.getHex<uint64_t>(p_psa->psaval);
   std::cout << "PSAXCVT: " << psaxcvt << std::endl;
-
+  make_JSON();
   return 0;
+}
+
+
+void make_JSON() {
+  nlohmann::json psa_json;
+  psa_json["psapsa"] = formatter.getString(p_psa->psapsa, 4);
+  psa_json["flcsvilc"] = static_cast<int16_t>(p_psa->flcsvilc);
+
+  std::string psa_json_string result_json_string = result_json.dump();
+
+  std::cout << psa_json_string << std::end;
 }
