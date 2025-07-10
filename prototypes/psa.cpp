@@ -3,7 +3,7 @@
 #include <string>
 
 #include <ihapsa.h>
-#include <nlohmann/json.hpp>
+#include "nlohmann/json.hpp"
 #include "control_block_field_formatter.hpp"
 
 
@@ -82,17 +82,35 @@ int main(void) {
 
   std::string psaxcvt = formatter.getHex<uint64_t>(p_psa->psaval);
   std::cout << "PSAXCVT: " << psaxcvt << std::endl;
-  make_JSON();
+
+
+  nlohmann::json psa_json = {};
+  psa_json["psapsa"] = formatter.getString(p_psa->psapsa, 4);
+  psa_json["flcsvilc"] = static_cast<int16_t>(p_psa->flcsvilc);
+  psa_json["flcrnpsw_bitstring"] = flcrnpsw_bitstring;
+  psa_json["flcrnpsw_hex"] = flcrnpsw_hex;
+  psa_json["flccvt"] = flccvt;
+  psa_json["flcsopsw"] = flcsopsw;
+  psa_json["flcarch"] = flcarch;
+  psa_json["flccvt64"] = flccvt64;
+  psa_json["flcfacl"] = flcfacl;
+  psa_json["flcfacle"] = flcfacle;
+  psa_json["psaaold"] = psaaold;
+  psa_json["psaecvt"] = psaecvt;
+  psa_json["psaflags"] = psaflags;
+  psa_json["psafpfl"] = psafpfl;
+  psa_json["psalaa"] = psalaa;
+  psa_json["psalccav"] = psalccav;
+  psa_json["psatold"] = psatold;
+  psa_json["psatrvt"] = psatrvt;
+  psa_json["psaval"] = psaval;
+  psa_json["psaxcvt"] = psaxcvt;
+
+  //std::string psa_json_string result_json_string = result_json.dump();
+
+  std::cout << psa_json << std::endl;
+  std::cout << std::setw(4) << psa_json << '\n';
   return 0;
 }
 
 
-void make_JSON() {
-  nlohmann::json psa_json;
-  psa_json["psapsa"] = formatter.getString(p_psa->psapsa, 4);
-  psa_json["flcsvilc"] = static_cast<int16_t>(p_psa->flcsvilc);
-
-  std::string psa_json_string result_json_string = result_json.dump();
-
-  std::cout << psa_json_string << std::end;
-}
