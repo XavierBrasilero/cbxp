@@ -40,6 +40,20 @@ class ControlBlockFieldFormatter {
         ControlBlockFieldFormatter::uint<T>(p_field)};
     return oss.str();
   }
+  static const std::string getPswSmall(const unsigned char *p_field) {
+    std::ostringstream oss;
+    oss << getBitmap<uint32_t>(p_field);
+    oss << " | ";
+    oss << getHex<uint32_t>(p_field+4);
+    return oss.str();
+  }
+  static const std::string getPswBig(const unsigned char *p_field) {
+    std::ostringstream oss;
+    oss << getBitmap<uint64_t>(p_field);
+    oss << " | ";
+    oss << getHex<uint64_t>(p_field+8);
+    return oss.str();
+  }
 };
 }  // namespace CBExplorer
 

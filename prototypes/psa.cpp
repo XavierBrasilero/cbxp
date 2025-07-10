@@ -18,7 +18,7 @@ int main(void) {
   std::string flcrnpsw_bitstring = formatter.getBitmap<uint32_t>(p_psa->flcrnpsw);
   std::string flcrnpsw_hex = formatter.getHex<uint32_t>(p_psa->flcrnpsw+4);
   std::string flccvt = formatter.getHex<uint32_t>(p_psa->flccvt);
-  std::string flcsopsw = formatter.getBitmap<uint64_t>(p_psa->flcsopsw);
+  std::string flcsopsw = formatter.getPswSmall(p_psa->flcsopsw);
 
   // Print fields
   std::cout << "PSAPSA: " << psapsa << std::endl;
