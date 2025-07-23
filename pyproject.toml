@@ -1,0 +1,56 @@
+[build-system]
+requires = ["setuptools >= 75.8.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+    name="cbxp"
+    version="1.0a1"
+    requires-python = ">= 3.11"
+    authors = [
+        { name = "Leonard J. Carcaramo Jr", email = "lcarcaramo@ibm.com" },
+        { name = "Elijah Swift", email = "elijah.swift@ibm.com" },
+        { name = "Varun Chennamadhava", email = "varunchennamadhava@ibm.com" },
+    ]
+    maintainers = [
+        { name = "Leonard J. Carcaramo Jr", email = "lcarcaramo@ibm.com" },
+        { name = "Elijah Swift", email = "elijah.swift@ibm.com" },
+        { name = "Varun Chennamadhava", email = "varunchennamadhava@ibm.com" },
+    ]
+    description="A unified and standardized interface to map and review z/OS Control Blocks."
+    readme = "README.md"
+    license = {text = "Apache-2.0"}
+    classifiers=[
+        "Development Status :: 3 - Alpha",
+        "Intended Audience :: Developers",
+        "Intended Audience :: System Administrators",
+        "License :: OSI Approved :: Apache Software License",
+        "Operating System :: POSIX :: Other",
+        "Programming Language :: Assembly",
+        "Programming Language :: C",
+        "Programming Language :: C++",
+        'Programming Language :: Python',
+        "Programming Language :: Python :: 3",
+        "Programming Language :: Python :: 3.11",
+        "Programming Language :: Python :: 3.12",
+        "Programming Language :: Python :: 3.13",
+        'Programming Language :: Python :: 3 :: Only',
+        "Programming Language :: Python :: Implementation :: CPython",
+        "Programming Language :: Python :: Implementation :: PyPy",
+        "Topic :: Security",
+        "Topic :: System :: Hardware :: Mainframes",
+        "Topic :: System :: Systems Administration",
+    ]
+
+[project.urls]
+    Homepage = "https://github.ibm.com/lcarcaramo/CBExplorer/"
+    Documentation = "https://github.ibm.com/lcarcaramo/CBExplorer/"
+    Source = "https://github.ibm.com/lcarcaramo/CBExplorer/"
+    Issues = "https://github.ibm.com/lcarcaramo/CBExplorer/issues"
+    "Release Notes" = "https://github.ibm.com/lcarcaramo/CBExplorer/milestones?state=closed"
+
+[tool.setuptools.packages.find]
+    where = ["python"]
+    include = ["racfu"]
+
+[tool.setuptools.package-data]
+    racfu = ['NOTICES.txt']
