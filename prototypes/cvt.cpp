@@ -17,9 +17,6 @@ int main(void) {
   struct cvtxtnt2 *__ptr32 p_cvtxtnt2 = static_cast<struct cvtxtnt2 *__ptr32>(p_psa->flccvt);
   struct cvtvstgx *__ptr32 p_cvtvstgx = static_cast<struct cvtvstgx *__ptr32>(p_psa->flccvt);
   
-  
-
-
   // Get fields
   nlohmann::json cvt_json = {};
 
@@ -105,7 +102,6 @@ int main(void) {
   cvt_json["cvt0pt02"] = formatter.getHex<uint32_t>(p_cvtmap->cvt0pt02);
   cvt_json["cvt0pt03"] = formatter.getHex<uint32_t>(p_cvtmap->cvt0pt03);
   cvt_json["cvt0scr1"] = formatter.getHex<uint32_t>(p_cvtmap->cvt0scr1);
-
 
   std::string cvt_json_string = cvt_json.dump();
   std::cout << cvt_json_string << std::endl;
