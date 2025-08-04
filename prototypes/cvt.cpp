@@ -15,12 +15,14 @@ int main(void) {
   struct cvtmap *__ptr32 p_cvtmap = static_cast<struct cvtmap *__ptr32>(p_psa->flccvt);
   struct cvtfix *__ptr32 p_cvtfix = static_cast<struct cvtfix *__ptr32>(p_psa->flccvt);
   struct cvtxtnt2 *__ptr32 p_cvtxtnt2 = static_cast<struct cvtxtnt2 *__ptr32>(p_psa->flccvt);
+  struct cvtvstgx *__ptr32 p_cvtvstgx = static_cast<struct cvtvstgx *__ptr32>(p_psa->flccvt);
   
   
 
 
   // Get fields
   nlohmann::json cvt_json = {};
+
   cvt_json["CVTABEND"] = formatter.getHex<uint32_t>(p_cvtmap->cvtabend);
   cvt_json["CVTAMFF"] = formatter.getHex<uint32_t>(p_cvtmap->cvtamff);
   cvt_json["CVTASMVT"] = formatter.getHex<uint32_t>(p_cvtmap->cvtasmvt);
@@ -30,23 +32,23 @@ int main(void) {
   cvt_json["CVTCSD"] = formatter.getHex<uint32_t>(p_cvtmap->cvtcsd);
   cvt_json["CVTCTLFG"] = formatter.getBitmap<uint8_t>(reinterpret_cast<char *>(&p_cvtmap->cvtctlfg));
   cvt_json["CVTDCB"] = formatter.getBitmap<uint8_t>(reinterpret_cast<char *>(&p_cvtmap->cvtdcb));
-  cvt_json["CVTDCPA"] = "NOT YET DONE";
+  cvt_json["CVTDCPA"] = formatter.getBitmap<uint32_t>(p_cvtmap->cvtdcpa);
   cvt_json["CVTDFA"] = formatter.getHex<uint32_t>(p_cvtmap->cvtdfa);
   cvt_json["CVTECVT"] = formatter.getHex<uint32_t>(p_cvtmap->cvtecvt);
-  cvt_json["CVTEDAT2"] = "NOT YET DONE";
-  cvt_json["CVTEPLPS"] = "NOT YET DONE";
+  cvt_json["CVTEDAT2"] = formatter.getBitmap<uint32_t>(p_cvtmap->cvtedat2);
+  cvt_json["CVTEPLPS"] = formatter.getHex<uint32_t>(p_cvtvstgx->cvteplps);
   cvt_json["CVTEXIT"] = formatter.getHex<uint16_t>(p_cvtmap->cvtexit);
   cvt_json["CVTEXP1"] = formatter.getHex<uint32_t>(p_cvtmap->cvtexp1);
-  cvt_json["CVTFLAG2"] = "NOT YET DONE";
-  cvt_json["CVTFLAG3"] = "NOT YET DONE";
-  cvt_json["CVTFLAG4"] = "NOT YET DONE";
+  cvt_json["CVTFLAG2"] = formatter.getBitmap<uint32_t>(p_cvtmap->cvtflag2);
+  cvt_json["CVTFLAG3"] = formatter.getBitmap<uint32_t>(p_cvtmap->cvtflag3);
+  cvt_json["CVTFLAG4"] = formatter.getBitmap<uint32_t>(p_cvtmap->cvtflag4);
   cvt_json["CVTFLAG5"] = formatter.getBitmap<uint32_t>(p_cvtmap->cvtflag5);
-  cvt_json["CVTFLAG6"] = "NOT YET DONE";
+  cvt_json["CVTFLAG6"] = formatter.getBitmap<uint32_t>(p_cvtmap->cvtflag6);
   cvt_json["CVTFLAG7"] = formatter.getBitmap<uint32_t>(p_cvtmap->cvtflag7);
   cvt_json["CVTFLAG9"] = formatter.getBitmap<uint8_t>(reinterpret_cast<char *>(&p_cvtmap->cvtflag9));
-  cvt_json["CVTFLGBT"] = "NOT YET DONE";
+  cvt_json["CVTFLGBT"] = formatter.getBitmap<uint32_t>(p_cvtxtnt2->cvtflgbt);
   cvt_json["CVTGDA"] = formatter.getHex<uint32_t>(p_cvtmap->cvtgda);
-  cvt_json["CVTGRSST"] = "NOT YET DONE";
+  cvt_json["CVTGRSST"] = formatter.getBitmap<uint32_t>(p_cvtmap->cvtgrsst);
   cvt_json["CVTGVT"] = formatter.getHex<uint32_t>(p_cvtmap->cvtgvt);
   cvt_json["CVTHID"] = formatter.getHex<uint32_t>(p_cvtmap->cvthid);
   cvt_json["CVTIXAVL"] = formatter.getHex<uint32_t>(p_cvtmap->cvtixavl);
@@ -60,7 +62,7 @@ int main(void) {
   cvt_json["CVTMSER"] = formatter.getHex<uint32_t>(p_cvtmap->cvtmser);
   cvt_json["CVTOPCTP"] = formatter.getHex<uint32_t>(p_cvtmap->cvtopctp);
   cvt_json["CVTOSLVL"] = formatter.getHex<uint64_t>(p_cvtmap->cvtoslvl) + formatter.getHex<uint64_t>(p_cvtmap->cvtoslvl+8);
-  cvt_json["CVTOVER"] = "NOT YET DONE";
+  cvt_json["CVTOVER"] = formatter.getBitmap<uint32_t>(p_cvtmap->cvtover);
   cvt_json["CVTPCCAT"] = formatter.getHex<uint32_t>(p_cvtmap->cvtpccat);
   cvt_json["CVTPCNVT"] = formatter.getHex<uint32_t>(p_cvtmap->cvtpcnvt);
   cvt_json["CVTPRLTV"] = formatter.getHex<uint32_t>(p_cvtmap->cvtprltv);
@@ -73,25 +75,25 @@ int main(void) {
   cvt_json["CVTRCEP"] = formatter.getHex<uint32_t>(p_cvtmap->cvtrcep);
   cvt_json["CVTRCZRT"] = formatter.getHex<uint32_t>(p_cvtmap->cvtrczrt);
   cvt_json["CVTRELNO"] = formatter.getHex<uint32_t>(p_cvtfix->cvtrelno);
-  cvt_json["CVTRI"] = "NOT YET DONE";
+  cvt_json["CVTRI"] = formatter.getBitmap<uint32_t>(p_cvtmap->cvtri);
   cvt_json["CVTRTMCT"] = formatter.getHex<uint32_t>(p_cvtmap->cvtrtmct);
   cvt_json["CVTSAF"] = formatter.getHex<uint32_t>(p_cvtmap->cvtsaf);
   cvt_json["CVTSCPIN"] = formatter.getHex<uint32_t>(p_cvtmap->cvtscpin);
-  //cvt_json["CVTSDBF"] = formatter.getHex<uint32_t>(p_cvtmap->cvtsdbf);
-  cvt_json["CVTSDUMP"] = "NOT YET DONE";
+  //cvt_json["CVTSDBF"] = formatter.getBitmap<uint32_t>(p_cvtmap->cvtsdbf);
+  cvt_json["CVTSDUMP"] = formatter.getBitmap<uint32_t>(p_cvtmap->cvtsdump);
   cvt_json["CVTSMCA"] = formatter.getHex<uint32_t>(p_cvtmap->cvtsmca);
   cvt_json["CVTSNAME"] = formatter.getString(p_cvtmap->cvtsname, 8);
-  cvt_json["CVTSUBSP"] = "NOT YET DONE";
+  cvt_json["CVTSUBSP"] = formatter.getBitmap<uint32_t>(p_cvtmap->cvtsubsp);
   cvt_json["CVTSVT"] = formatter.getHex<uint32_t>(p_cvtmap->cvtsvt);
   cvt_json["CVTSYSAD"] = formatter.getHex<uint32_t>(p_cvtmap->cvtsysad);
   cvt_json["CVTTPC"] = formatter.getHex<uint32_t>(p_cvtmap->cvttpc);
   cvt_json["CVTTVT"] = formatter.getHex<uint32_t>(p_cvtmap->cvttvt);
-  cvt_json["CVTTX"] = "NOT YET DONE";
-  cvt_json["CVTTXC"] = "NOT YET DONE";
-  cvt_json["CVTTXTE"] = "NOT YET DONE";
+  cvt_json["CVTTX"] = formatter.getBitmap<uint32_t>(p_cvtmap->cvttx);
+  cvt_json["CVTTXC"] = formatter.getBitmap<uint32_t>(p_cvtmap->cvttxc);
+  cvt_json["CVTTXTE"] = formatter.getBitmap<uint32_t>(p_cvtmap->cvttxte);
   cvt_json["CVTTZ"] = p_cvtmap->cvttz;
   cvt_json["CVTUCBSC"] = formatter.getHex<uint32_t>(p_cvtmap->cvtucbsc);
-  //cvt_json["CVTUNDVM"] = formatter.getHex<uint32_t>(p_cvtxtnt2->cvtundvm);
+  cvt_json["CVTUNDVM"] = formatter.getBitmap<uint32_t>(p_cvtxtnt2->cvtundvm);
   cvt_json["CVTUSER"] = formatter.getHex<uint32_t>(p_cvtmap->cvtuser);
   cvt_json["CVTVERID"] = formatter.getHex<uint64_t>(p_cvtfix->cvtverid);
   cvt_json["CVTVFGET"] = formatter.getHex<uint32_t>(p_cvtmap->cvtvfget);
