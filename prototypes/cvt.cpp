@@ -40,9 +40,9 @@ int main(void) {
   cvt_json["CVTFLAG2"] = "NOT YET DONE";
   cvt_json["CVTFLAG3"] = "NOT YET DONE";
   cvt_json["CVTFLAG4"] = "NOT YET DONE";
-  cvt_json["CVTFLAG5"] = "NOT YET DONE";
+  cvt_json["CVTFLAG5"] = formatter.getBitmap<uint32_t>(p_cvtmap->cvtflag5);
   cvt_json["CVTFLAG6"] = "NOT YET DONE";
-  //cvt_json["CVTFLAG7"] = formatter.getBitmap<uint8_t>(reinterpret_cast<char *>(&p_cvtmap->cvtflag7));
+  cvt_json["CVTFLAG7"] = formatter.getBitmap<uint32_t>(p_cvtmap->cvtflag7);
   cvt_json["CVTFLAG9"] = formatter.getBitmap<uint8_t>(reinterpret_cast<char *>(&p_cvtmap->cvtflag9));
   cvt_json["CVTFLGBT"] = "NOT YET DONE";
   cvt_json["CVTGDA"] = formatter.getHex<uint32_t>(p_cvtmap->cvtgda);
