@@ -17,6 +17,10 @@ psa: clean mkdirs
 	$(CXX) $(CFLAGS) -o $(DIST)/psa psa.cpp
 	$(DIST)/psa
 
+cvt: clean mkdirs
+	$(CXX) $(CFLAGS) -o $(DIST)/cvt cvt.cpp
+	$(DIST)/cvt
+
 ecvt: clean mkdirs
 	$(CXX) $(CFLAGS) -o $(DIST)/ecvt ecvt.cpp
 	$(DIST)/ecvt

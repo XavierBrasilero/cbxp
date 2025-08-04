@@ -40,6 +40,12 @@ class ControlBlockFieldFormatter {
         ControlBlockFieldFormatter::uint<T>(p_field)};
     return oss.str();
   }
+  template <typename T>
+  static const std::string getBitmap(T field) {
+    std::ostringstream oss;
+    oss << std::bitset<sizeof(T) * 8>{field};
+    return oss.str();
+  }
   static const std::string getPswSmall(const unsigned char *p_field) {
     std::ostringstream oss;
     oss << getBitmap<uint32_t>(p_field);
