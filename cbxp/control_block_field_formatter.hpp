@@ -8,7 +8,7 @@
 #include <sstream>
 #include <string>
 
-namespace CBExplorer {
+namespace CBXP {
 class ControlBlockFieldFormatter {
  private:
   template <typename T>
@@ -50,17 +50,17 @@ class ControlBlockFieldFormatter {
     std::ostringstream oss;
     oss << getBitmap<uint32_t>(p_field);
     oss << " | ";
-    oss << getHex<uint32_t>(p_field+4);
+    oss << getHex<uint32_t>(p_field + 4);
     return oss.str();
   }
   static const std::string getPswBig(const unsigned char *p_field) {
     std::ostringstream oss;
     oss << getBitmap<uint64_t>(p_field);
     oss << " | ";
-    oss << getHex<uint64_t>(p_field+8);
+    oss << getHex<uint64_t>(p_field + 8);
     return oss.str();
   }
 };
-}  // namespace CBExplorer
+}  // namespace CBXP
 
 #endif

@@ -2,6 +2,7 @@
 
 #include <Python.h>
 #include <stdbool.h>
+#include <stdlib.h>
 
 #define BUFFER_SIZE = 100000
 
@@ -21,14 +22,13 @@ static PyObject* call_cbxp(PyObject* self, PyObject* args, PyObject* kwargs) {
     return NULL;
   }
 
-  debug = PyObject_IsTrue(debug_pyobj);
+  debug             = PyObject_IsTrue(debug_pyobj);
 
-  char * result_json = static_cast<char *>(calloc(BUFFER_SIZE, sizeof(char)));;
+  char* result_json = (char*)calloc(BUFFER_SIZE, sizeof(char));
 
   cbxp(&result, request_as_string, debug);
 
-  result_dictionary = Py_BuildValue(
-      "{s:s}", "result_json", result_json);
+  result_dictionary = Py_BuildValue("{s:s}", "result_json", result_json);
 
   free(result_json);
 
@@ -44,8 +44,8 @@ static PyMethodDef _C_methods[] = {
 
 // Module definition
 static struct PyModuleDef _C_module_def = {
-    PyModuleDef_HEAD_INIT, "_C", "Python interface to z/OS Control Blocks",
-    -1, _C_methods};
+    PyModuleDef_HEAD_INIT, "_C", "Python interface to z/OS Control Blocks", -1,
+    _C_methods};
 
 // Module initialization function
 PyMODINIT_FUNC PyInit__C(void) {
