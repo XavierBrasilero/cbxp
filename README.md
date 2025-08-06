@@ -1,2 +1,2 @@
-# CBExplorer
-C/C++ Control Block Explorer Prototype
+# CBXP
+A unified and standardized interface for extracting z/OS control block data.
