@@ -109,7 +109,7 @@ nlohmann::json ECVT::get() {
   ecvt_json["ecvtpseq"] = p_ecvt->ecvtpseq;
   ecvt_json["ecvtpver"] = formatter_.getString(p_ecvt->ecvtpver, 2);
   ecvt_json["ecvtslid"] = formatter_.getBitmap<uint32_t>(reinterpret_cast<char *>(&p_ecvt->ecvtslid));
-  ecvt_json["ecvtsplx"] = formatter_.getString(p_ecvt->ecvtsplx, ;
+  ecvt_json["ecvtsplx"] = formatter_.getString(p_ecvt->ecvtsplx, 8);
   ecvt_json["ecvtsrbj"] = formatter_.getHex<uint32_t>(p_ecvt->ecvtsrbj);
   ecvt_json["ecvtsrbl"] = formatter_.getHex<uint32_t>(p_ecvt->ecvtsrbl);
   ecvt_json["ecvtsxmp"] = formatter_.getHex<uint32_t>(p_ecvt->ecvtsxmp);
