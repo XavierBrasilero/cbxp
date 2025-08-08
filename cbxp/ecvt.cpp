@@ -23,11 +23,12 @@ nlohmann::json ECVT::get() {
   // Get Fields
   nlohmann::json ecvt_json = {};
 
-  ecvt_json["ECVT_BoostInfo"] = formatter_.getBitmap<uint64_t>(reinterpret_cast<char *>(&p_ecvt->ecvt_boostinfo))+
+  ecvt_json["ecvt_ziipboostcoresaddr"] = formatter_.getHex<uint32_t>(p_ecvt->ecvtr430+4);
+  ecvt_json["ecvt_boostinfo"] = formatter_.getBitmap<uint64_t>(reinterpret_cast<char *>(&p_ecvt->ecvt_boostinfo))+
                                 formatter_.getBitmap<uint64_t>(reinterpret_cast<char *>(&p_ecvt->ecvt_boostinfo+ 8)) +
                                 formatter_.getBitmap<uint64_t>(reinterpret_cast<char *>(&p_ecvt->ecvt_boostinfo+ 16));
 
-  ecvt_json["ECVT_BoostInfo_V1"] = 
+  ecvt_json["ecvt_boostinfo_v1"] = 
                                 formatter_.getBitmap<uint64_t>(reinterpret_cast<char *>(&p_ecvt->ecvt_boostinfo_v1))+
                                 formatter_.getBitmap<uint64_t>(reinterpret_cast<char *>(&p_ecvt->ecvt_boostinfo_v1+ 8)) +
                                 formatter_.getBitmap<uint64_t>(reinterpret_cast<char *>(&p_ecvt->ecvt_boostinfo_v1+ 16)) +
