@@ -23,8 +23,6 @@ nlohmann::json ECVT::get() {
   // Get Fields
   nlohmann::json ecvt_json = {};
 
-  ecvt_json["Sysplex Name: "] = formatter_.getString(p_ecvt->ecvtsplx, 8);
-  ecvt_json["ecvtssds"] = p_ecvt->ecvtssds;
   ecvt_json["ECVT_BoostInfo"] = formatter_.getBitmap<uint64_t>(reinterpret_cast<char *>(&p_ecvt->ecvt_boostinfo))+
                                 formatter_.getBitmap<uint64_t>(reinterpret_cast<char *>(&p_ecvt->ecvt_boostinfo+ 8)) +
                                 formatter_.getBitmap<uint64_t>(reinterpret_cast<char *>(&p_ecvt->ecvt_boostinfo+ 16));
