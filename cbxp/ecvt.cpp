@@ -22,7 +22,6 @@ nlohmann::json ECVT::get() {
 
   // Get Fields
   nlohmann::json ecvt_json = {};
-
   ecvt_json["ecvt_ziipboostcoresaddr"] = formatter_.getHex<uint32_t>(p_ecvt->ecvtr430+4);
   ecvt_json["ecvt_boostinfo"] = formatter_.getBitmap<uint64_t>(reinterpret_cast<char *>(&p_ecvt->ecvt_boostinfo))+
                                 formatter_.getBitmap<uint64_t>(reinterpret_cast<char *>(&p_ecvt->ecvt_boostinfo+ 8)) +
@@ -55,6 +54,7 @@ nlohmann::json ECVT::get() {
   ecvt_json["ecvt_osprotect"] = formatter_.getBitmap<uint8_t>(reinterpret_cast<char *>(&p_ecvt->ecvt_osprotect));
   ecvt_json["ecvt_osprotect_whensystem"] = formatter_.getBitmap<uint8_t>(reinterpret_cast<char *>(&p_ecvt->ecvt_osprotect_whensystem));
   ecvt_json["ecvt_smf_cms_lockinst_addr"] = formatter_.getHex<uint32_t>(p_ecvt->ecvt_smf_cms_lockinst_addr);
+    ecvt_json["ecvt_ziipboostcoresaddr"] = formatter_.getHex<uint32_t>(p_ecvt->ecvtr430+4);
   //ecvt_json["ECVT_ZOSR11_CPUMASKSIZEINBITS"] = ECVT_ZOSR11_CPUMASKSIZEINBITS;
   //ecvt_json["ECVT_ZOSR11_CPUMASKSIZEINBYTES"] = ECVT_ZOSR11_CPUMASKSIZEINBYTES;
   //ecvt_json["ECVT_ZOSR11_HIGHESTCPUID"] = ECVT_ZOSR11_HIGHESTCPUID;
@@ -109,7 +109,7 @@ nlohmann::json ECVT::get() {
   ecvt_json["ecvtpseq"] = p_ecvt->ecvtpseq;
   ecvt_json["ecvtpver"] = formatter_.getString(p_ecvt->ecvtpver, 2);
   ecvt_json["ecvtslid"] = formatter_.getBitmap<uint32_t>(reinterpret_cast<char *>(&p_ecvt->ecvtslid));
-  ecvt_json["ecvtsplx"] = formatter_.getString(p_ecvt->ecvtsplx, 8);
+  ecvt_json["ecvtsplx"] = formatter_.getString(p_ecvt->ecvtsplx, ;
   ecvt_json["ecvtsrbj"] = formatter_.getHex<uint32_t>(p_ecvt->ecvtsrbj);
   ecvt_json["ecvtsrbl"] = formatter_.getHex<uint32_t>(p_ecvt->ecvtsrbl);
   ecvt_json["ecvtsxmp"] = formatter_.getHex<uint32_t>(p_ecvt->ecvtsxmp);
