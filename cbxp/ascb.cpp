@@ -7,7 +7,7 @@
 #include <nlohmann/json.hpp>
 #include <string>
 
-namespace ASCB {
+namespace CBXP {
 nlohmann::json ASCB::get() {
   // PSA starts at address 0
   struct psa *__ptr32 p_psa = 0;
