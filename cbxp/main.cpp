@@ -5,6 +5,7 @@
 #include "cvt.hpp"
 #include "ecvt.hpp"
 #include "psa.hpp"
+#include "ascb.hpp"
 
 static void show_usage(char *argv[]) {
   std::cout << "Usage: " << argv[0] << " [CONTROL_BLOCK]" << std::endl;
