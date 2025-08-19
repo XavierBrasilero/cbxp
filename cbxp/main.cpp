@@ -29,6 +29,8 @@ int main(int argc, char *argv[]) {
     control_block_json = CBXP::CVT().get();
   } else if (control_block == "ecvt") {
     control_block_json = CBXP::ECVT().get();
+  } else if (control_block == "ascb") {
+    control_block_json = CBXP::ASCB().get();
   } else {
     std::cout << "Unknown control block '" << argv[1] << "' was specified."
               << std::endl;
