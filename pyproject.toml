@@ -18,14 +18,12 @@ build-backend = "setuptools.build_meta"
     ]
     description="A unified and standardized interface to map and review z/OS Control Blocks."
     readme = "README.md"
-    license = {text = "Apache-2.0"}
+    license = "Apache-2.0"
     classifiers=[
         "Development Status :: 3 - Alpha",
         "Intended Audience :: Developers",
         "Intended Audience :: System Administrators",
-        "License :: OSI Approved :: Apache Software License",
         "Operating System :: POSIX :: Other",
-        "Programming Language :: Assembly",
         "Programming Language :: C",
         "Programming Language :: C++",
         'Programming Language :: Python',
@@ -36,7 +34,6 @@ build-backend = "setuptools.build_meta"
         'Programming Language :: Python :: 3 :: Only',
         "Programming Language :: Python :: Implementation :: CPython",
         "Programming Language :: Python :: Implementation :: PyPy",
-        "Topic :: Security",
         "Topic :: System :: Hardware :: Mainframes",
         "Topic :: System :: Systems Administration",
     ]

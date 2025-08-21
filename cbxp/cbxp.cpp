@@ -3,17 +3,18 @@
 #include <nlohmann/json.hpp>
 
 #include "cbxp.h"
+#include "control_block_explorer.hpp"
 #include "cvt.hpp"
 #include "ecvt.hpp"
 #include "psa.hpp"
 
-static void show_usage(nlohmann::json request_json) {
+static void show_json_usage(nlohmann::json request_json) {
   std::cout << "Request json must contain 'control_block' key with valid value." << std::endl;
   std::cout << "Your request contains: " << request_json.dump() << std::endl;
 }
 
 int cbxp(char *result_json_string, const char *p_request_json_string, int length, bool debug) {
-  nlohmann::json request_json, result_json;
+  nlohmann::json request_json, control_block_json;
 
   try {
     // Ensure Request JSON is a NULL terminated string.
@@ -33,7 +34,7 @@ int cbxp(char *result_json_string, const char *p_request_json_string, int length
   }
 
   if (!request_json.contains("control_block")) {
-    show_usage(request_json);
+    show_json_usage(request_json);
     return -1;
   }
 
@@ -42,23 +43,10 @@ int cbxp(char *result_json_string, const char *p_request_json_string, int length
   }
 
   std::string control_block = request_json["control_block"].get<std::string>();
-  std::transform(control_block.begin(), control_block.end(),
-                 control_block.begin(),
-                 [](unsigned char c) { return std::tolower(c); });
 
-  if (debug) {
-    std::cout << "The 'control_block' has the value: " << control_block << std::endl;
-  }
+  control_block_json =  explore_control_block(control_block, debug);
 
-  nlohmann::json control_block_json;
-
-  if (control_block == "psa") {
-    control_block_json = CBXP::PSA().get();
-  } else if (control_block == "cvt") {
-    control_block_json = CBXP::CVT().get();
-  } else if (control_block == "ecvt") {
-    control_block_json = CBXP::ECVT().get();
-  } else {
+  if (control_block_json.empty()){
     std::cout << "Unknown control block '" << control_block << "' was specified."
               << std::endl;
     return -1;

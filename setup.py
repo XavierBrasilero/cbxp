@@ -56,6 +56,10 @@ def main():
                     "-m64",
                     "-Wl,-b,edit=no",
                 ],
+                extra_compile_args=[
+                    "-fzos-le-char-mode=ascii",
+                    "-Wno-trigraphs"
+                ]
             ),
         ],
         "cmdclass": {"build_ext": build_ext},
