@@ -4,23 +4,21 @@
 
 #include "control_block_explorer.hpp"
 
-static void show_cli_usage(char *argv[]) {
+static void show_usage(char *argv[]) {
   std::cout << "Usage: " << argv[0] << " [CONTROL_BLOCK]" << std::endl;
 }
 
 int main(int argc, char *argv[]) {
   if (argc != 2) {
-    show_cli_usage(argv);
+    show_usage(argv);
     return -1;
   }
-
-  bool debug = true;
 
   std::string control_block = argv[1];
 
   nlohmann::json control_block_json;
 
-  control_block_json = explore_control_block(control_block, debug);
+  control_block_json = explore_control_block(control_block, false);
 
   if (control_block_json.empty()){
     std::cout << "Unknown control block '" << control_block << "' was specified."

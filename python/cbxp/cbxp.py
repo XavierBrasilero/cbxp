@@ -6,27 +6,32 @@ from cbxp._C import call_cbxp
 class CbxpResult:
     def __init__(
             self,
-            request: dict,
+            control_block: str,
             result: dict | None,
             rc: int
     ):
-        self.request = request
-        self.result = result       
+        self.control_block = control_block
+        self.result = result 
+        self.return_code = rc      
 
     
-def cbxp(request: dict, debug: bool = False) -> dict:
-    response = call_cbxp(json.dumps(request), debug=debug)
+def cbxp(control_block: str, debug: bool = False) -> dict:
+    response = call_cbxp(control_block, debug=debug)
+    if response['result_json'] is None:
+        result_json = None
+    else:
+        result_json = json.loads(response['result_json'])
     return CbxpResult(
-        request = request,
-        result = json.loads(response['result_json']),
+        control_block = control_block,
+        result = result_json,
         rc = response['return_code']
     )
 
 def psa(debug: bool = False) -> dict:
-    return cbxp( {"control_block": "psa"}, debug=debug).result
+    return cbxp("psa", debug=debug).result
 
 def cvt(debug: bool = False) -> dict:
-    return cbxp( {"control_block": "cvt"}, debug=debug).result
+    return cbxp("cvt", debug=debug).result
 
 def ecvt(debug: bool = False) -> dict:
-    return cbxp( {"control_block": "ecvt"}, debug=debug).result
+    return cbxp("ecvt", debug=debug).result
