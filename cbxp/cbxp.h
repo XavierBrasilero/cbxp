@@ -14,7 +14,7 @@ avoid memory leaks:
   result.result_json
 
 */
-void cbxp(char *result_json, const char *request_json, bool debug);
+int cbxp(char *result_json_string, const char *p_request_json_string, int length, bool debug);
 
 #ifdef __cplusplus
 }

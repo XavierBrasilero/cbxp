@@ -50,7 +50,7 @@ build-backend = "setuptools.build_meta"
 
 [tool.setuptools.packages.find]
     where = ["python"]
-    include = ["racfu"]
+    include = ["cbxp"]
 
 [tool.setuptools.package-data]
-    racfu = ['NOTICES.txt']
+    cbxp = ['NOTICES.txt']

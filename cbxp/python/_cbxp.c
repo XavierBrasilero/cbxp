@@ -4,7 +4,7 @@
 #include <stdbool.h>
 #include <stdlib.h>
 
-#define BUFFER_SIZE = 100000
+#define BUFFER_SIZE 100000
 
 #include "cbxp.h"
 
@@ -13,12 +13,14 @@ static PyObject* call_cbxp(PyObject* self, PyObject* args, PyObject* kwargs) {
   PyObject* result_dictionary;
   PyObject* debug_pyobj;
   const char* request_as_string;
+  Py_ssize_t request_length;
   bool debug            = false;
+  int rc;
 
   static char* kwlist[] = {"request", "debug", NULL};
 
-  if (!PyArg_ParseTupleAndKeywords(args, kwargs, "s|O", kwlist,
-                                   &request_as_string, &debug_pyobj)) {
+  if (!PyArg_ParseTupleAndKeywords(args, kwargs, "s#|O", kwlist,
+                                   &request_as_string, &request_length, &debug_pyobj)) {
     return NULL;
   }
 
@@ -26,9 +28,9 @@ static PyObject* call_cbxp(PyObject* self, PyObject* args, PyObject* kwargs) {
 
   char* result_json = (char*)calloc(BUFFER_SIZE, sizeof(char));
 
-  cbxp(&result, request_as_string, debug);
+  rc = cbxp(result_json, request_as_string, request_length, debug);
 
-  result_dictionary = Py_BuildValue("{s:s}", "result_json", result_json);
+  result_dictionary = Py_BuildValue("{s:s, s:i}", "result_json", result_json, "return_code", rc);
 
   free(result_json);
 
@@ -37,14 +39,14 @@ static PyObject* call_cbxp(PyObject* self, PyObject* args, PyObject* kwargs) {
 
 // Method definition
 static PyMethodDef _C_methods[] = {
-    {"call_racfu", (PyCFunction)call_racfu, METH_VARARGS | METH_KEYWORDS,
-     "Python interface to z/OS Control Blocks"},
+    {"call_cbxp", (PyCFunction)call_cbxp, METH_VARARGS | METH_KEYWORDS,
+     "Python interface to z/OS Control Block Explorer"},
     {NULL}
 };
 
 // Module definition
 static struct PyModuleDef _C_module_def = {
-    PyModuleDef_HEAD_INIT, "_C", "Python interface to z/OS Control Blocks", -1,
+    PyModuleDef_HEAD_INIT, "_C", "Python interface to z/OS Control Block Explorer", -1,
     _C_methods};
 
 // Module initialization function
