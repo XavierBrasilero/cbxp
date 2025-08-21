@@ -3,8 +3,18 @@
 
 #include <nlohmann/json.hpp>
 
-static void show_usage(char *argv[]);
+#include "cbxp.h"
 
-nlohmann::json explore_control_block(std::string control_block, bool debug);
+namespace CBXP {
+    class ControlBlockExplorer {
+        private:
+            bool _debug;
+            cbxp_result_t* _p_result;
+            nlohmann::json pull_control_block_data(std::string control_block_name);
+        public:
+            ControlBlockExplorer(cbxp_result_t* cbxp_result, bool debug);
+            void explore_control_block(std::string control_block_name);
+    };
+} //namespace CBXP
 
 #endif

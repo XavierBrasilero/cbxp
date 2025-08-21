@@ -2,6 +2,7 @@
 #include <iostream>
 #include <nlohmann/json.hpp>
 
+#include "cbxp_result.h"
 #include "control_block_explorer.hpp"
 
 static void show_usage(char *argv[]) {
@@ -14,20 +15,15 @@ int main(int argc, char *argv[]) {
     return -1;
   }
 
-  std::string control_block = argv[1];
+  std::string control_block_name = argv[1];
 
   nlohmann::json control_block_json;
 
-  control_block_json = explore_control_block(control_block, false);
+  static cbxp_result_t cbxp_result = {nullptr, nullptr, 0, -1};
 
-  if (control_block_json.empty()){
-    std::cout << "Unknown control block '" << control_block << "' was specified."
-              << std::endl;
-    return -1;
-  }
+  CBXP::ControlBlockExplorer explorer = CBXP::ControlBlockExplorer(&cbxp_result, false);
+  
+  explorer.explore_control_block(control_block_name);
 
-  std::string control_block_json_string = control_block_json.dump();
-  std::cout << control_block_json_string << std::endl;
-
-  return 0;
+  return cbxp_result.return_code;
 }
