@@ -27,12 +27,20 @@ namespace CBXP {
   }
 
   void ControlBlockExplorer::explore_control_block(std::string control_block_name){
-    nlohmann::json control_block_json;
-
+    nlohmann::json control_block_json = {};
     _p_result->control_block = control_block_name.c_str();
-    control_block_json = pull_control_block_data(control_block_name);
 
-    if (control_block_json.empty()){
+    if (_debug) {
+      std::cout << "The 'control_block' has the value: " << control_block_name << std::endl;
+    }
+
+    if (control_block_name == "psa") {
+      control_block_json = CBXP::PSA().get();
+    } else if (control_block_name == "cvt") {
+      control_block_json = CBXP::CVT().get();
+    } else if (control_block_name == "ecvt") {
+      control_block_json = CBXP::ECVT().get();
+    } else {
       std::cout << "Unknown control block '" << control_block_name << "' was specified."
                 << std::endl;
       return;
@@ -54,26 +62,5 @@ namespace CBXP {
     _p_result->return_code = 0;
     return;
     }
-
-  nlohmann::json ControlBlockExplorer::pull_control_block_data(std::string control_block_name){
-    std::transform(control_block_name.begin(), control_block_name.end(),
-                  control_block_name.begin(),
-                  [](unsigned char c) { return std::tolower(c); });
-
-    if (_debug) {
-      std::cout << "The 'control_block' has the value: " << control_block_name << std::endl;
-    }
-
-    nlohmann::json control_block_json = {};
-
-    if (control_block_name == "psa") {
-      control_block_json = CBXP::PSA().get();
-    } else if (control_block_name == "cvt") {
-      control_block_json = CBXP::CVT().get();
-    } else if (control_block_name == "ecvt") {
-      control_block_json = CBXP::ECVT().get();
-    }
-
-    return control_block_json;
-  }
-}
+    
+  } //namespace CBXP

@@ -10,7 +10,6 @@ namespace CBXP {
         private:
             bool _debug;
             cbxp_result_t* _p_result;
-            nlohmann::json pull_control_block_data(std::string control_block_name);
         public:
             ControlBlockExplorer(cbxp_result_t* cbxp_result, bool debug);
             void explore_control_block(std::string control_block_name);
