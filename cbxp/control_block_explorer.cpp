@@ -13,13 +13,9 @@ namespace CBXP {
     if (p_result->result_json != nullptr) {
       delete[] p_result->result_json;
     }
-    if (p_result->control_block != nullptr) {
-      delete[] p_result->result_json;
-    }
 
     p_result->result_json_length = 0;
     p_result->result_json = nullptr;
-    p_result->control_block = nullptr;
     p_result->return_code = -1;
 
     _debug = debug;
@@ -28,10 +24,9 @@ namespace CBXP {
 
   void ControlBlockExplorer::explore_control_block(std::string control_block_name){
     nlohmann::json control_block_json = {};
-    _p_result->control_block = control_block_name.c_str();
 
     if (_debug) {
-      std::cout << "The 'control_block' has the value: " << control_block_name << std::endl;
+      std::cout << "Retrieving information on the '" << control_block_name << "' control block." << std::endl;
     }
 
     if (control_block_name == "psa") {
@@ -53,7 +48,7 @@ namespace CBXP {
     }
 
     _p_result->result_json_length = control_block_json_string.length();
-    _p_result->result_json = (char *)calloc(_p_result->result_json_length, sizeof(char));
+    _p_result->result_json = new char[_p_result->result_json_length];
 
 
     std::strncpy(_p_result->result_json, control_block_json_string.c_str(),
@@ -64,3 +59,4 @@ namespace CBXP {
     }
     
   } //namespace CBXP
+  

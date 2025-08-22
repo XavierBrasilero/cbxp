@@ -10,7 +10,7 @@ cbxp_result_t *cbxp(const char *control_block_name, bool debug) {
   nlohmann::json control_block_json;
   std::string control_block = control_block_name;
 
-  static cbxp_result_t cbxp_result = {nullptr, nullptr, 0, -1};
+  static cbxp_result_t cbxp_result = {nullptr, 0, -1};
 
   CBXP::ControlBlockExplorer explorer = CBXP::ControlBlockExplorer(&cbxp_result, debug);
 

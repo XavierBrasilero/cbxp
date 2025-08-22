@@ -37,7 +37,7 @@ static PyObject* call_cbxp(PyObject* self, PyObject* args, PyObject* kwargs) {
   cbxp_result_t* result = cbxp(control_block, debug);
 
   result_dictionary = Py_BuildValue(
-    "{s:s, s:s#, s:i}", "control_block", result->control_block,
+    "{s:s#, s:i}",
     "result_json", result->result_json, result->result_json_length,
     "return_code", result->return_code);
   

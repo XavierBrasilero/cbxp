@@ -19,11 +19,13 @@ int main(int argc, char *argv[]) {
 
   nlohmann::json control_block_json;
 
-  static cbxp_result_t cbxp_result = {nullptr, nullptr, 0, -1};
+  static cbxp_result_t cbxp_result = {nullptr, 0, -1};
 
   CBXP::ControlBlockExplorer explorer = CBXP::ControlBlockExplorer(&cbxp_result, false);
   
   explorer.explore_control_block(control_block_name);
+
+  std::cout << cbxp_result.result_json << std::endl;
 
   return cbxp_result.return_code;
 }
