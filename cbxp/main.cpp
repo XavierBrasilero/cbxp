@@ -23,9 +23,15 @@ int main(int argc, char *argv[]) {
 
   CBXP::ControlBlockExplorer explorer = CBXP::ControlBlockExplorer(&cbxp_result, false);
   
-  explorer.explore_control_block(control_block_name);
+  explorer.exploreControlBlock(control_block_name);
 
-  std::cout << cbxp_result.result_json << std::endl;
+  if (cbxp_result.return_code == -1) {
+    std::cout << "Unknown control block '" << control_block_name << "' was specified."
+            << std::endl;
+  }
+  else {
+    std::cout << cbxp_result.result_json << std::endl;
+  }
 
   return cbxp_result.return_code;
 }

@@ -22,7 +22,7 @@ namespace CBXP {
     _p_result = p_result;
   }
 
-  void ControlBlockExplorer::explore_control_block(std::string control_block_name){
+  void ControlBlockExplorer::exploreControlBlock(std::string control_block_name){
     nlohmann::json control_block_json = {};
 
     if (_debug) {
@@ -36,8 +36,6 @@ namespace CBXP {
     } else if (control_block_name == "ecvt") {
       control_block_json = CBXP::ECVT().get();
     } else {
-      std::cout << "Unknown control block '" << control_block_name << "' was specified."
-                << std::endl;
       return;
     }
 

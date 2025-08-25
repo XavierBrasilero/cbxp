@@ -14,7 +14,7 @@ cbxp_result_t *cbxp(const char *control_block_name, bool debug) {
 
   CBXP::ControlBlockExplorer explorer = CBXP::ControlBlockExplorer(&cbxp_result, debug);
 
-  explorer.explore_control_block(control_block);
+  explorer.exploreControlBlock(control_block);
   
   return &cbxp_result;
 }

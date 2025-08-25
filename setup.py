@@ -9,28 +9,6 @@ from setuptools import Extension, setup
 from setuptools.command.build_ext import build_ext
 
 
-def generate_json_schema_header() -> None:
-    """Generate CBXP JSON schema header."""
-    #TODO: Implement this method of input validation
-    schema_absolute_path = Path.cwd() / "schema.json"
-    with open(schema_absolute_path) as f:
-        schema = json.dumps(json.load(f), separators=(",", ":"))
-    schema_header_absolute_path = Path.cwd() / "cbxp" / "cbxp_schema.hpp"
-    with open(schema_header_absolute_path, "w") as f:
-        f.write(
-            "\n".join(
-                [
-                    "#ifndef __CBXP_SCHEMA_H_",
-                    "#define __CBXP_SCHEMA_H_",
-                    "",
-                    f'#define CBXP_SCHEMA R"({schema})"_json',
-                    "",
-                    "#endif",
-                ],
-            ),
-        )
-
-
 def main():
     """Python extension build entrypoint."""
     cwd = Path.cwd()

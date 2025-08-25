@@ -49,13 +49,13 @@ static PyObject* call_cbxp(PyObject* self, PyObject* args, PyObject* kwargs) {
 // Method definition
 static PyMethodDef _C_methods[] = {
     {"call_cbxp", (PyCFunction)call_cbxp, METH_VARARGS | METH_KEYWORDS,
-     "Python interface to z/OS Control Block Explorer"},
+     "A unified and standardized interface for extracting z/OS control block data."},
     {NULL}
 };
 
 // Module definition
 static struct PyModuleDef _C_module_def = {
-    PyModuleDef_HEAD_INIT, "_C", "Python interface to z/OS Control Block Explorer", -1,
+    PyModuleDef_HEAD_INIT, "_C", "A unified and standardized interface for extracting z/OS control block data.", -1,
     _C_methods};
 
 // Module initialization function
