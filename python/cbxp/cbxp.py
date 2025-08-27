@@ -19,5 +19,5 @@ class CBXPError(Exception):
 def cbxp(control_block_name: str, debug: bool = False) -> dict:
     response = call_cbxp(control_block_name, debug=debug)
     if response['return_code']:
-        raise CBXPError(control_block_name)
+        raise CBXPError(response['return_code'], control_block_name)
     return json.loads(response['result_json'])
