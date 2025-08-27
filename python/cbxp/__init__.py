@@ -1,1 +1,1 @@
-from cbxp import *
+from .cbxp import cbxp as cbxp

@@ -1,6 +1,8 @@
 #ifndef __CBXP_H_
 #define __CBXP_H_
 
+#include "cbxp_result.h"
+
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -14,7 +16,7 @@ avoid memory leaks:
   result.result_json
 
 */
-void cbxp(char *result_json, const char *request_json, bool debug);
+cbxp_result_t *cbxp(const char *control_block_name, bool debug);
 
 #ifdef __cplusplus
 }

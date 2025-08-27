@@ -37,6 +37,7 @@
 # Build artifacts
 artifacts
 dist
+*egg-info/
 
 # CMake
 CMakeLists.txt.user
@@ -51,3 +52,6 @@ compile_commands.json
 CTestTestfile.cmake
 _deps
 CMakeUserPresets.json
+
+# Virtual Environment
+env/
