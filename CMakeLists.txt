@@ -14,6 +14,7 @@ add_executable(cbxp ${CBXP_SRC})
 target_include_directories(
     cbxp PUBLIC
     cbxp
+    externals
     /usr/include/zos
 )
 

@@ -2,9 +2,8 @@
 #include <iostream>
 #include <nlohmann/json.hpp>
 
-#include "cvt.hpp"
-#include "ecvt.hpp"
-#include "psa.hpp"
+#include "cbxp_result.h"
+#include "control_block_explorer.hpp"
 
 static void show_usage(char *argv[]) {
   std::cout << "Usage: " << argv[0] << " [CONTROL_BLOCK]" << std::endl;
@@ -16,27 +15,23 @@ int main(int argc, char *argv[]) {
     return -1;
   }
 
-  std::string control_block = argv[1];
-  std::transform(control_block.begin(), control_block.end(),
-                 control_block.begin(),
-                 [](unsigned char c) { return std::tolower(c); });
+  std::string control_block_name = argv[1];
 
   nlohmann::json control_block_json;
 
-  if (control_block == "psa") {
-    control_block_json = CBXP::PSA().get();
-  } else if (control_block == "cvt") {
-    control_block_json = CBXP::CVT().get();
-  } else if (control_block == "ecvt") {
-    control_block_json = CBXP::ECVT().get();
-  } else {
-    std::cout << "Unknown control block '" << argv[1] << "' was specified."
-              << std::endl;
-    return -1;
+  static cbxp_result_t cbxp_result = {nullptr, 0, -1};
+
+  CBXP::ControlBlockExplorer explorer = CBXP::ControlBlockExplorer(&cbxp_result, false);
+  
+  explorer.exploreControlBlock(control_block_name);
+
+  if (cbxp_result.return_code == -1) {
+    std::cout << "Unknown control block '" << control_block_name << "' was specified."
+            << std::endl;
+  }
+  else {
+    std::cout << cbxp_result.result_json << std::endl;
   }
 
-  std::string control_block_json_string = control_block_json.dump();
-  std::cout << control_block_json_string << std::endl;
-
-  return 0;
+  return cbxp_result.return_code;
 }
