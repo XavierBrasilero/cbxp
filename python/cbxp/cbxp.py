@@ -8,9 +8,9 @@ class CBXPError(Exception):
         self.rc = return_code
         match self.rc:
             case -1:
-                message = f"could not obtain control block information for '{control_block_name}'"
+                message = f"control block '{control_block_name}' is unknown"
             case _:
-                message = "an unknown error occurred in control block explorer"
+                message = "an unknown error occurred"
         super().__init__(message)
 
     
@@ -19,5 +19,5 @@ class CBXPError(Exception):
 def cbxp(control_block_name: str, debug: bool = False) -> dict:
     response = call_cbxp(control_block_name, debug=debug)
     if response['return_code']:
-        return CBXPError(control_block_name)
+        raise CBXPError(control_block_name)
     return json.loads(response['result_json'])
