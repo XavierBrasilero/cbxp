@@ -7,6 +7,7 @@
 #include "cvt.hpp"
 #include "ecvt.hpp"
 #include "psa.hpp"
+#include "ascb.hpp"
 
 namespace CBXP {
   ControlBlockExplorer::ControlBlockExplorer(cbxp_result_t* p_result, bool debug){
@@ -35,6 +36,8 @@ namespace CBXP {
       control_block_json = CBXP::CVT().get();
     } else if (control_block_name == "ecvt") {
       control_block_json = CBXP::ECVT().get();
+    }else if (control_block_name == "ascb") {
+      control_block_json = CBXP::ASCB().get();
     } else {
       return;
     }
@@ -46,8 +49,8 @@ namespace CBXP {
     }
 
     _p_result->result_json_length = control_block_json_string.length();
-    _p_result->result_json = new char[_p_result->result_json_length];
-
+    _p_result->result_json = new char[_p_result->result_json_length+1];
+    _p_result->result_json[_p_result->result_json_length] = 0;
 
     std::strncpy(_p_result->result_json, control_block_json_string.c_str(),
                 _p_result->result_json_length);
