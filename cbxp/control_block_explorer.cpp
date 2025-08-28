@@ -48,7 +48,7 @@ namespace CBXP {
       std::cout << control_block_json_string << std::endl;
     }
 
-    p_result->result_json_length = control_block_json_string.length();
+    _p_result->result_json_length = control_block_json_string.length();
     _p_result->result_json = new char[_p_result->result_json_length+1];
     _p_result->result_json[_p_result->result_json_length] = 0;
 
