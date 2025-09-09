@@ -19,6 +19,7 @@ typedef struct {
   uint64_t reserved1;
   char asvtasvt[4];
   int32_t  asvtmaxu;
+  int32_t  asvtmdsc;
   char *__ptr32  asvtfrst;
   // skipped this single bit
   char *__ptr32  asvtenty;

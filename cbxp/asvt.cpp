@@ -22,6 +22,9 @@ nlohmann::json ASVT::get() {
   // Get fields
   nlohmann::json asvt_json = {};
   asvt_json["asvthwmasid"] = p_asvt->asvthwmasid;
+  asvt_json["asvtcurhighasid"] = p_asvt->asvtcurhighasid;
+  asvt_json["asvtreua"] = formatter_.getHex<uint32_t>(p_asvt->asvtreua);
+
   return asvt_json;
 }
 }  // namespace CBXP
