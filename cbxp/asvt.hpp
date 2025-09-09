@@ -6,22 +6,23 @@
 #pragma pack(push, 1)  // Don't byte align structure members.
 typedef struct {
   char esvtprfx[464];
-  uint32_t asvthwmasid;
-  uint32_t asvtcurhighasid;
-  char __ptr32* asvtreua;
-  char __ptr32* asvtravl;
-  uint32_t asvtaav;
-  uint32_t asvtast;
-  uint32_t asvtanr;
-  uint32_t asvtstrt;
-  uint32_t asvtnonr;
-  uint32_t asvtmaxi;
-  //ignored bitstring
+  int32_t asvthwmasid;
+  int32_t asvtcurhighasid;
+  char *__ptr32 asvtreua;
+  char *__ptr32 asvtravl;
+  int32_t asvtaav;
+  int32_t asvtast;
+  int32_t asvtanr;
+  int32_t asvtstrt;
+  int32_t asvtnonr;
+  int32_t asvtmaxi;
+  uint64_t reserved1;
   char asvtasvt[4];
-  uint32_t  asvtmaxu;
-  char __ptr32*  asvtfrst;
+  int32_t  asvtmaxu;
+  char *__ptr32  asvtfrst;
   // skipped this single bit
-  char __ptr32*  asvtavai;
+  char *__ptr32  asvtenty;
+
   // skipped ASVTAVAL ---> to bottom
 } asvt_t;
 #pragma pack(pop)  // Restore default structure packing options.
