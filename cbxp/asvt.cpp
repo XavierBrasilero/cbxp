@@ -24,7 +24,18 @@ nlohmann::json ASVT::get() {
   asvt_json["asvthwmasid"] = p_asvt->asvthwmasid;
   asvt_json["asvtcurhighasid"] = p_asvt->asvtcurhighasid;
   asvt_json["asvtreua"] = formatter_.getHex<uint32_t>(p_asvt->asvtreua);
-
+  asvt_json["asvtreua"] = formatter_.getHex<uint32_t>(p_asvt->asvtravl);
+  asvt_json["asvtaav"] = p_asvt->asvtaav;
+  asvt_json["asvtast"] = p_asvt->asvtast;
+  asvt_json["asvtanr"] = p_asvt->asvtanr;
+  asvt_json["asvtstrt"] = p_asvt->asvtstrt;
+  asvt_json["asvtnonr"] = p_asvt->asvtnonr;
+  asvt_json["asvtmaxi"] = p_asvt->asvtmaxi;
+  asvt_json["asvtasvt"] = formatter_.getString(p_asvt->asvtasvt, 4);
+  asvt_json["asvtmaxu"] = p_asvt->asvtmaxu;
+  asvt_json["asvtmdsc"] = p_asvt->asvtmdsc;
+  asvt_json["asvtfrst"] = formatter_.getHex<uint32_t>(p_asvt->asvtfrst);
+  asvt_json["asvtenty"] = formatter_.getHex<uint32_t>(p_asvt->asvtenty);
   return asvt_json;
 }
 }  // namespace CBXP
