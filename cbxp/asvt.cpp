@@ -6,37 +6,51 @@
 #include <cstdint>
 #include <nlohmann/json.hpp>
 #include <string>
+#include <vector>
 
 namespace CBXP {
 nlohmann::json ASVT::get() {
 
-  struct psa *__ptr32 p_psa = 0;
-  struct cvtmap *__ptr32 p_cvtmap =
-      static_cast<struct cvtmap *__ptr32>(p_psa->flccvt);
-  asvt_t *__ptr32 p_asvt = 
-        static_cast<asvt_t *__ptr32>(p_cvtmap->cvtasvt);
+struct psa *__ptr32 p_psa = 0;
+struct cvtmap *__ptr32 p_cvtmap =
+    static_cast<struct cvtmap *__ptr32>(p_psa->flccvt);
+asvt_t *__ptr32 p_asvt = 
+    static_cast<asvt_t *__ptr32>(p_cvtmap->cvtasvt);
 
 
 
 
   // Get fields
-  nlohmann::json asvt_json = {};
-  asvt_json["asvthwmasid"] = p_asvt->asvthwmasid;
-  asvt_json["asvtcurhighasid"] = p_asvt->asvtcurhighasid;
-  asvt_json["asvtreua"] = formatter_.getHex<uint32_t>(p_asvt->asvtreua);
-  asvt_json["asvtreua"] = formatter_.getHex<uint32_t>(p_asvt->asvtravl);
-  asvt_json["asvtaav"] = p_asvt->asvtaav;
-  asvt_json["asvtast"] = p_asvt->asvtast;
-  asvt_json["asvtanr"] = p_asvt->asvtanr;
-  asvt_json["asvtstrt"] = p_asvt->asvtstrt;
-  asvt_json["asvtnonr"] = p_asvt->asvtnonr;
-  asvt_json["asvtmaxi"] = p_asvt->asvtmaxi;
-  asvt_json["asvtasvt"] = formatter_.getString(p_asvt->asvtasvt, 4);
-  asvt_json["asvtmaxu"] = p_asvt->asvtmaxu;
-  asvt_json["asvtmdsc"] = p_asvt->asvtmdsc;
-  asvt_json["asvtfrst"] = formatter_.getHex<uint32_t>(p_asvt->asvtfrst);
-  asvt_json["asvtenty"] = formatter_.getHex<uint32_t>(p_asvt->asvtenty);
-  return asvt_json;
+nlohmann::json asvt_json = {};
+asvt_json["asvthwmasid"] = p_asvt->asvthwmasid;
+asvt_json["asvtcurhighasid"] = p_asvt->asvtcurhighasid;
+asvt_json["asvtreua"] = formatter_.getHex<uint32_t>(p_asvt->asvtreua);
+asvt_json["asvtreua"] = formatter_.getHex<uint32_t>(p_asvt->asvtravl);
+asvt_json["asvtaav"] = p_asvt->asvtaav;
+asvt_json["asvtast"] = p_asvt->asvtast;
+asvt_json["asvtanr"] = p_asvt->asvtanr;
+asvt_json["asvtstrt"] = p_asvt->asvtstrt;
+asvt_json["asvtnonr"] = p_asvt->asvtnonr;
+asvt_json["asvtmaxi"] = p_asvt->asvtmaxi;
+asvt_json["asvtasvt"] = formatter_.getString(p_asvt->asvtasvt, 4);
+asvt_json["asvtmaxu"] = p_asvt->asvtmaxu;
+asvt_json["asvtmdsc"] = p_asvt->asvtmdsc;
+asvt_json["asvtfrst"] = formatter_.getHex<uint32_t>(p_asvt->asvtfrst);
+asvt_json["asvtenty"] = formatter_.getHex<uint32_t>(p_asvt->asvtenty);
+
+void *__ptr32 ascbstart;
+std::vector<std::string> ascbs;
+ascbs.reserve(p_asvt->asvtmaxu);
+uint32_t *__ptr32 p_ascb = static_cast<uint32_t *__ptr32>(p_asvt->ascbstart);
+
+for (int i = 0; i < p_asvt->asvtmaxu; i++) {
+    ascbs.push_back(formatter_.getHex<uint32_t>(&p_ascb));
+    p_ascb++; // This SHOULD increment the pointer by 4 bytes.
+}
+
+asvt_json["ascbs"] = ascbs;
+
+return asvt_json;
 }
 }  // namespace CBXP
 

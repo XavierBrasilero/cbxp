@@ -49,9 +49,6 @@ nlohmann::json ASCB::get() {
 
 
 
-
- 
-
   return ascb_json;
 }
 }  // namespace CBXP
