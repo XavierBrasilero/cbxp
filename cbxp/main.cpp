@@ -2,8 +2,10 @@
 #include <iostream>
 #include <nlohmann/json.hpp>
 
+
 #include "cbxp_result.h"
 #include "control_block_explorer.hpp"
+
 
 static void show_usage(char *argv[]) {
   std::cout << "Usage: " << argv[0] << " [CONTROL_BLOCK]" << argv[1] << " [DEBUG_LOGGING_ENABLED: -d/--debug] (default false)" << std::endl;
@@ -32,11 +34,13 @@ int main(int argc, char *argv[]) {
 
   nlohmann::json control_block_json;
 
+
   static cbxp_result_t cbxp_result = {nullptr, 0, -1};
 
   CBXP::ControlBlockExplorer explorer = CBXP::ControlBlockExplorer(&cbxp_result, debug_logging);
   
   explorer.exploreControlBlock(control_block_name);
+
 
   if (cbxp_result.return_code == -1) {
     std::cout << "Unknown control block '" << control_block_name << "' was specified."
