@@ -36,17 +36,18 @@ asvt_json["asvtasvt"] = formatter_.getString(p_asvt->asvtasvt, 4);
 asvt_json["asvtmaxu"] = p_asvt->asvtmaxu;
 asvt_json["asvtmdsc"] = p_asvt->asvtmdsc;
 asvt_json["asvtfrst"] = formatter_.getHex<uint32_t>(p_asvt->asvtfrst);
-asvt_json["asvtenty"] = formatter_.getHex<uint32_t>(p_asvt->asvtenty);
+
 
 std::vector<std::string> ascbs;
 ascbs.reserve(p_asvt->asvtmaxu);
-uint32_t *__ptr32 p_ascb = static_cast<uint32_t *__ptr32>(&p_asvt->asvtenty);
+uint32_t *__ptr32 p_ascb = reinterpret_cast<uint32_t *__ptr32>(&p_asvt->asvtenty);
 
 for (int i = 0; i < p_asvt->asvtmaxu; i++) {
     ascbs.push_back(formatter_.getHex<uint32_t>(p_ascb));
     p_ascb++; // This SHOULD increment the pointer by 4 bytes.
 }
 
+asvt_json["asvtenty"] = ascbs;
 return asvt_json;
 }
 }  // namespace CBXP
