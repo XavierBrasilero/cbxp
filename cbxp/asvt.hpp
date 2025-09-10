@@ -23,7 +23,6 @@ typedef struct {
   char *__ptr32  asvtfrst;
   // skipped this single bit
   char *__ptr32  asvtenty;
-  void *__ptr32 ascbstart;
 
   // skipped ASVTAVAL ---> to bottom
 } asvt_t;
