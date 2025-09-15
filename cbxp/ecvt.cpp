@@ -22,7 +22,7 @@ nlohmann::json ECVT::get() {
       static_cast<struct ecvt *__ptr32>(p_cvt->cvtecvt);
 
   Logger::getInstance().debug("Hex dump of ECVT data:");
-  Logger::getInstance().hexDump(reinterpret_cast<const char *>(p_ecvt), sizeof(ecvt));
+  Logger::getInstance().hexDump(reinterpret_cast<const char *>(p_ecvt), sizeof(ecvt_t));
 
   // Get Fields
   nlohmann::json ecvt_json = {};
