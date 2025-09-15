@@ -40,7 +40,7 @@ asvt_json["asvtmdsc"] = p_asvt->asvtmdsc;
 asvt_json["asvtfrst"] = formatter_.getHex<uint32_t>(p_asvt->asvtfrst);
 
 Logger::getInstance().debug("Hex dump of ASVT ASCB pointers:");
-Logger::getInstance().hexDump(p_asvt->asvtenty, p_asvt->asvtmaxu*4);
+Logger::getInstance().hexDump(reinterpret_cast<const char *>(&p_asvt->asvtenty), p_asvt->asvtmaxu*4);
 
 std::vector<std::string> ascbs;
 ascbs.reserve(p_asvt->asvtmaxu);

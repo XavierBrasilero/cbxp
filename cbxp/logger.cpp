@@ -58,12 +58,12 @@ void Logger::debugFree(const void* ptr) const {
   Logger::debug(oss.str());
 }
 
-void Logger::hexDump(const char* p_buffer, int length) const {
+void Logger::hexDump(const char* p_buffer, int length, bool intended_nullptr) const {
   if (!debug_) {
     return;
   }
 
-  if (p_buffer == nullptr) {
+  if ((p_buffer == nullptr) && (!intended_nullptr)) {
     std::cout << std::endl << "N/A" << std::endl << std::endl;
     return;
   }
