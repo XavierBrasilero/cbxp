@@ -1,4 +1,5 @@
 #include "ecvt.hpp"
+#include "logger.hpp"
 
 #include <cvt.h>
 #include <ihaecvt.h>
@@ -19,6 +20,9 @@ nlohmann::json ECVT::get() {
   // Get the address of the EVCT from the CVT
   struct ecvt *__ptr32 p_ecvt =
       static_cast<struct ecvt *__ptr32>(p_cvt->cvtecvt);
+
+  Logger::getInstance().debug("Hex dump of ECVT data:");
+  Logger::getInstance().hexDump(reinterpret_cast<const char *>(p_ecvt), sizeof(ecvt));
 
   // Get Fields
   nlohmann::json ecvt_json = {};

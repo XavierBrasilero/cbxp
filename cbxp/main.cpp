@@ -8,14 +8,14 @@
 
 
 static void show_usage(char *argv[]) {
-  std::cout << "Usage: " << argv[0] << " [CONTROL_BLOCK]" << argv[1] << " [DEBUG_LOGGING_ENABLED: -d/--debug] (default false)" << std::endl;
+  std::cout << "Usage: " << argv[0] << " [DEBUG_LOGGING_ENABLED: -d/--debug] (default false)" << argv[1] << " [CONTROL_BLOCK]" << std::endl;
 }
 
 int main(int argc, char *argv[]) {
   bool debug_logging = false;
 
   if (argc == 3) {
-    std::string argv2 = argv[2];
+    std::string argv2 = argv[1];
     if ((argv2.compare("-d") == 0) || (argv2.compare("--debug") == 0)){
       debug_logging = true;
     }
@@ -29,7 +29,7 @@ int main(int argc, char *argv[]) {
     return -1;
   }
 
-  std::string control_block_name = argv[1];
+  std::string control_block_name = argv[argc-1];
 
 
   nlohmann::json control_block_json;

@@ -30,7 +30,7 @@ namespace CBXP {
   void ControlBlockExplorer::exploreControlBlock(std::string control_block_name){
     nlohmann::json control_block_json = {};
 
-    Logger::getInstance().debug("Retrieving information on the '" + control_block_name + "' control block...");
+    Logger::getInstance().debug("Extracting '" + control_block_name + "' control block data...");
 
     if (control_block_name == "psa") {
       control_block_json = CBXP::PSA().get();
