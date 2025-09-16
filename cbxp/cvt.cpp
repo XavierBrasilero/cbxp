@@ -1,4 +1,5 @@
 #include "cvt.hpp"
+#include "logger.hpp"
 
 #include <cvt.h>
 #include <ihapsa.h>
@@ -20,6 +21,9 @@ nlohmann::json CVT::get() {
   struct cvtvstgx *__ptr32 p_cvtvstgx =
       static_cast<struct cvtvstgx *__ptr32>(p_psa->flccvt);
 
+  Logger::getInstance().debug("CVT hex dump:");
+  Logger::getInstance().hexDump(reinterpret_cast<const char *>(p_cvtmap), sizeof(struct cvtmap));
+  
   // Get fields
   nlohmann::json cvt_json = {};
 

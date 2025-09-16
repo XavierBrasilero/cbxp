@@ -1,4 +1,5 @@
 #include "ascb.hpp"
+#include "logger.hpp"
 
 #include <cvt.h>
 #include <ihapsa.h>
@@ -14,6 +15,9 @@ nlohmann::json ASCB::get() {
   struct psa *__ptr32 p_psa = 0;
   struct ascb *__ptr32 p_ascb =
       static_cast<struct ascb *__ptr32>(p_psa->psaaold);
+
+  Logger::getInstance().debug("ASCB hex dump:");
+  Logger::getInstance().hexDump(reinterpret_cast<const char *>(p_ascb), sizeof(struct ascb));
 
   // Get fields
   nlohmann::json ascb_json = {};
