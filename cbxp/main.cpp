@@ -12,12 +12,12 @@ static void show_usage(char *argv[]) {
 }
 
 int main(int argc, char *argv[]) {
-  bool debug_logging = false;
+  bool debug = false;
 
   if (argc == 3) {
     std::string argv2 = argv[1];
     if ((argv2.compare("-d") == 0) || (argv2.compare("--debug") == 0)){
-      debug_logging = true;
+      debug = true;
     }
     else{
       show_usage(argv);
@@ -37,7 +37,7 @@ int main(int argc, char *argv[]) {
 
   static cbxp_result_t cbxp_result = {nullptr, 0, -1};
 
-  CBXP::ControlBlockExplorer explorer = CBXP::ControlBlockExplorer(&cbxp_result, debug_logging);
+  CBXP::ControlBlockExplorer explorer = CBXP::ControlBlockExplorer(&cbxp_result, debug);
   
   explorer.exploreControlBlock(control_block_name);
 

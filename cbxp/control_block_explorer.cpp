@@ -50,7 +50,7 @@ namespace CBXP {
 
     Logger::getInstance().debug("Done.");
 
-    Logger::getInstance().debug("Resulting JSON String: " + control_block_json_string);
+    Logger::getInstance().debug("Control Block JSON: " + control_block_json_string);
 
     _p_result->result_json_length = control_block_json_string.length();
     _p_result->result_json = new char[_p_result->result_json_length];

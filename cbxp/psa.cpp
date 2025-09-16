@@ -12,8 +12,8 @@ nlohmann::json PSA::get() {
   // PSA starts at address 0
   struct psa *__ptr32 p_psa = 0;
 
-  Logger::getInstance().debug("Hex dump of PSA data:");
-  Logger::getInstance().hexDump(reinterpret_cast<const char *>(p_psa), sizeof(psa)/2, true); //Only the first "page" of the PSA is not fetch-protected
+  Logger::getInstance().debug("PSA hex dump:");
+  Logger::getInstance().hexDump(reinterpret_cast<const char *>(p_psa), sizeof(struct psa)/2, true); //Only the first "page" of the PSA is not fetch-protected
 
   // Get fieldsß
   nlohmann::json psa_json = {};

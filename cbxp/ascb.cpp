@@ -16,8 +16,8 @@ nlohmann::json ASCB::get() {
   struct ascb *__ptr32 p_ascb =
       static_cast<struct ascb *__ptr32>(p_psa->psaaold);
 
-  Logger::getInstance().debug("Hex dump of ASCB data:");
-  Logger::getInstance().hexDump(reinterpret_cast<const char *>(p_ascb), sizeof(ascb));
+  Logger::getInstance().debug("ASCB hex dump:");
+  Logger::getInstance().hexDump(reinterpret_cast<const char *>(p_ascb), sizeof(struct ascb));
 
   // Get fields
   nlohmann::json ascb_json = {};

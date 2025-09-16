@@ -18,7 +18,7 @@ struct cvtmap *__ptr32 p_cvtmap =
 asvt_t *__ptr32 p_asvt = 
     static_cast<asvt_t *__ptr32>(p_cvtmap->cvtasvt);
 
-Logger::getInstance().debug("Hex dump of ASVT data:");
+Logger::getInstance().debug("ASVT hex dump:");
 Logger::getInstance().hexDump(reinterpret_cast<const char *>(p_asvt), sizeof(asvt_t));
 
 
@@ -39,7 +39,7 @@ asvt_json["asvtmaxu"] = p_asvt->asvtmaxu;
 asvt_json["asvtmdsc"] = p_asvt->asvtmdsc;
 asvt_json["asvtfrst"] = formatter_.getHex<uint32_t>(p_asvt->asvtfrst);
 
-Logger::getInstance().debug("Hex dump of ASVT ASCB pointers:");
+Logger::getInstance().debug("ASCB pointers:");
 Logger::getInstance().hexDump(reinterpret_cast<const char *>(&p_asvt->asvtenty), p_asvt->asvtmaxu*4);
 
 std::vector<std::string> ascbs;
