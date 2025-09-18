@@ -13,7 +13,7 @@
 namespace CBXP {
 nlohmann::json ASCB::get() {
 
-  // PSA starts at address 0
+    // PSA starts at address 0
     struct psa *__ptr32 p_psa = 0;
 
     struct cvtmap *__ptr32 p_cvtmap =
@@ -21,17 +21,14 @@ nlohmann::json ASCB::get() {
     asvt_t *__ptr32 p_asvt = 
         static_cast<asvt_t *__ptr32>(p_cvtmap->cvtasvt);
 
-    // Get fields
     nlohmann::json ascb_json = {};
 
     ascb_json["ascbs"] = std::vector<nlohmann::json>();
     std::vector<nlohmann::json> &ascbs = ascb_json["ascbs"].get_ref<std::vector<nlohmann::json> &>();
     ascbs.reserve(p_asvt->asvtmaxu);
     
-    
     uint32_t *__ptr32 p_ascb_addr = reinterpret_cast<uint32_t *__ptr32>(&p_asvt->asvtenty);
 
-    
     for (int i = 0; i < p_asvt->asvtmaxu; i++) {
         
         if (0x80000000 & *p_ascb_addr) {
@@ -78,8 +75,6 @@ nlohmann::json ASCB::get() {
         p_ascb_addr++; // This SHOULD increment the pointer by 4 bytes.
         
     }
-
-
 
   return ascb_json;
 }
