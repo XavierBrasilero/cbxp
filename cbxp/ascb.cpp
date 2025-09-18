@@ -16,12 +16,6 @@ nlohmann::json ASCB::get() {
   // PSA starts at address 0
     struct psa *__ptr32 p_psa = 0;
 
-  Logger::getInstance().debug("ASCB hex dump:");
-  Logger::getInstance().hexDump(reinterpret_cast<const char *>(p_ascb), sizeof(struct ascb));
-
-  // Get fields
-  nlohmann::json ascb_json = {};
-
     struct cvtmap *__ptr32 p_cvtmap =
     static_cast<struct cvtmap *__ptr32>(p_psa->flccvt);
     asvt_t *__ptr32 p_asvt = 
@@ -39,13 +33,20 @@ nlohmann::json ASCB::get() {
 
     
     for (int i = 0; i < p_asvt->asvtmaxu; i++) {
-        if (!(reinterpret_cast<uint32_t>(p_ascb_addr) & 0x80000000)) { 
+        
+        if (0x80000000 & *p_ascb_addr) {
+            Logger::getInstance().debug(formatter_.getHex<uint32_t>(p_ascb_addr) + " is not a valid ASCB address");
             p_ascb_addr++;
             continue;
         }
         nlohmann::json ascb_entry_json = {};
+    
         struct ascb *__ptr32 p_ascb = 
             reinterpret_cast<struct ascb *__ptr32>(*p_ascb_addr);
+
+        Logger::getInstance().debug("ASCB hex dump:");
+        Logger::getInstance().hexDump(reinterpret_cast<const char *>(p_ascb), sizeof(struct ascb));
+
         ascb_entry_json["ascbascb"] = formatter_.getString(p_ascb->ascbascb, 4);
         ascb_entry_json["ascbasid"] = formatter_.getBitmap<uint32_t>(p_ascb->ascbasid); 
         ascb_entry_json["ascbassb"] = formatter_.getHex<uint32_t>(&(p_ascb->ascbassb));
@@ -73,19 +74,10 @@ nlohmann::json ASCB::get() {
         ascb_entry_json["ascbtcbs"] = p_ascb->ascbtcbs;
         ascb_entry_json["ascbxtcb"] = formatter_.getHex<uint32_t>(&(p_ascb->ascbxtcb));
         ascb_entry_json["ascbzcx"] = formatter_.getBitmap<uint32_t>(p_ascb->ascbzcx);
-        std::cout << formatter_.getString(p_ascb->ascbascb, 4) << std::endl;
         ascbs.push_back(ascb_entry_json);
         p_ascb_addr++; // This SHOULD increment the pointer by 4 bytes.
         
     }
-
-
-    //struct ascb *__ptr32 p_ascb =
-    //  static_cast<struct ascb *__ptr32>(p_psa->psaaold);
-
-    //Next one will talk w Team
-
-
 
 
 
