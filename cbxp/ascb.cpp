@@ -39,7 +39,7 @@ nlohmann::json ASCB::get() {
 
     
     for (int i = 0; i < p_asvt->asvtmaxu; i++) {
-        if (reinterpret_cast<uint32_t>(p_ascb_addr) & 0x80000000) { 
+        if (!(reinterpret_cast<uint32_t>(p_ascb_addr) & 0x80000000)) { 
             p_ascb_addr++;
             continue;
         }
