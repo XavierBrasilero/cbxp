@@ -55,4 +55,3 @@ asvt_json["asvtenty"] = ascbs;
 return asvt_json;
 }
 }  // namespace CBXP
-
