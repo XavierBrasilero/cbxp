@@ -43,7 +43,6 @@ nlohmann::json ASCB::get() {
 
         Logger::getInstance().debug("ASCB hex dump:");
         Logger::getInstance().hexDump(reinterpret_cast<const char *>(p_ascb), sizeof(struct ascb));
-
         
         ascb_entry_json["ascbasid"] = static_cast<uint32_t>(p_ascb->ascbasid); 
         ascb_entry_json["ascbassb"] = formatter_.getHex<uint32_t>(&(p_ascb->ascbassb));
