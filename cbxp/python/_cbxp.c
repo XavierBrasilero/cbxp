@@ -17,16 +17,15 @@ static PyObject* call_cbxp(PyObject* self, PyObject* args, PyObject* kwargs) {
   const char* control_block;
   Py_ssize_t request_length;
   bool debug            = false;
-  int rc;
 
   static char* kwlist[] = {"request", "debug", NULL};
 
-  if (!PyArg_ParseTupleAndKeywords(args, kwargs, "s|O", kwlist,
-                                   &control_block, &debug_pyobj)) {
+  if (!PyArg_ParseTupleAndKeywords(args, kwargs, "s|O", kwlist, &control_block,
+                                   &debug_pyobj)) {
     return NULL;
   }
 
-  debug             = PyObject_IsTrue(debug_pyobj);
+  debug = PyObject_IsTrue(debug_pyobj);
 
   // Since cbxp manages cbxp_result_t as a static structure,
   // we need to use a mutex to make this thread safe.
@@ -36,11 +35,10 @@ static PyObject* call_cbxp(PyObject* self, PyObject* args, PyObject* kwargs) {
 
   cbxp_result_t* result = cbxp(control_block, debug);
 
-  result_dictionary = Py_BuildValue(
-    "{s:s#, s:i}",
-    "result_json", result->result_json, result->result_json_length,
-    "return_code", result->return_code);
-  
+  result_dictionary     = Py_BuildValue(
+      "{s:s#, s:i}", "result_json", result->result_json,
+      result->result_json_length, "return_code", result->return_code);
+
   pthread_mutex_unlock(&cbxp_mutex);
 
   return result_dictionary;
@@ -49,16 +47,22 @@ static PyObject* call_cbxp(PyObject* self, PyObject* args, PyObject* kwargs) {
 // Method definition
 static PyMethodDef _C_methods[] = {
     {"call_cbxp", (PyCFunction)call_cbxp, METH_VARARGS | METH_KEYWORDS,
-     "A unified and standardized interface for extracting z/OS control block data."},
+     "A unified and standardized interface for extracting z/OS control block "
+     "data."},
     {NULL}
 };
 
 // Module definition
 static struct PyModuleDef _C_module_def = {
-    PyModuleDef_HEAD_INIT, "_C", "A unified and standardized interface for extracting z/OS control block data.", -1,
-    _C_methods};
+    PyModuleDef_HEAD_INIT, "_C",
+    "A unified and standardized interface for extracting z/OS control block "
+    "data.",
+    -1, _C_methods};
 
 // Module initialization function
+// 'unusedFunction' is a false positive since 'PyInit__C()' is used by the
+// Python interpreter
+// cppcheck-suppress unusedFunction
 PyMODINIT_FUNC PyInit__C(void) {
   Py_Initialize();
   return PyModule_Create(&_C_module_def);

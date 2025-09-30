@@ -8,8 +8,8 @@ typedef struct {
   char esvtprfx[464];
   int32_t asvthwmasid;
   int32_t asvtcurhighasid;
-  char *__ptr32 asvtreua;
-  char *__ptr32 asvtravl;
+  char* __ptr32 asvtreua;
+  char* __ptr32 asvtravl;
   int32_t asvtaav;
   int32_t asvtast;
   int32_t asvtanr;
@@ -18,11 +18,11 @@ typedef struct {
   int32_t asvtmaxi;
   uint64_t reserved1;
   char asvtasvt[4];
-  int32_t  asvtmaxu;
-  int32_t  asvtmdsc;
-  char *__ptr32  asvtfrst;
+  int32_t asvtmaxu;
+  int32_t asvtmdsc;
+  char* __ptr32 asvtfrst;
   // skipped this single bit
-  char *__ptr32  asvtenty;
+  char* __ptr32 asvtenty;
 
   // skipped ASVTAVAL ---> to bottom
 } asvt_t;

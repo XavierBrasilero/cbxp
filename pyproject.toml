@@ -1,11 +1,11 @@
 [build-system]
-requires = ["setuptools >= 75.8.0"]
+requires = ["setuptools >= 80.9.0"]
 build-backend = "setuptools.build_meta"
 
 [project]
     name="cbxp"
-    version="1.0a1"
-    requires-python = ">= 3.11"
+    version="0.0.2"
+    requires-python = ">= 3.12"
     authors = [
         { name = "Leonard J. Carcaramo Jr", email = "lcarcaramo@ibm.com" },
         { name = "Elijah Swift", email = "elijah.swift@ibm.com" },
@@ -28,7 +28,6 @@ build-backend = "setuptools.build_meta"
         "Programming Language :: C++",
         'Programming Language :: Python',
         "Programming Language :: Python :: 3",
-        "Programming Language :: Python :: 3.11",
         "Programming Language :: Python :: 3.12",
         "Programming Language :: Python :: 3.13",
         'Programming Language :: Python :: 3 :: Only',
@@ -50,4 +49,4 @@ build-backend = "setuptools.build_meta"
     include = ["cbxp"]
 
 [tool.setuptools.package-data]
-    cbxp = ['NOTICES.txt']
+    cbxp = ["LICENSE", "NOTICES"]

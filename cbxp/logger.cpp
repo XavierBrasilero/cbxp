@@ -1,5 +1,7 @@
 #include "logger.hpp"
 
+#include <unistd.h>
+
 #include <cctype>
 #include <csignal>
 #include <cstring>
@@ -7,8 +9,6 @@
 #include <iostream>
 #include <memory>
 #include <sstream>
-
-#include <unistd.h>
 
 namespace CBXP {
 Logger::Logger() { debug_ = false; }
@@ -58,7 +58,8 @@ void Logger::debugFree(const void* ptr) const {
   Logger::debug(oss.str());
 }
 
-void Logger::hexDump(const char* p_buffer, int length, bool intended_nullptr) const {
+void Logger::hexDump(const char* p_buffer, int length,
+                     bool intended_nullptr) const {
   if (!debug_) {
     return;
   }

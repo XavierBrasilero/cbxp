@@ -1,9 +1,6 @@
 """Build Python extension."""
 
-import json
-import os
 from glob import glob
-from pathlib import Path
 
 from setuptools import Extension, setup
 from setuptools.command.build_ext import build_ext
@@ -11,15 +8,13 @@ from setuptools.command.build_ext import build_ext
 
 def main():
     """Python extension build entrypoint."""
-    cwd = Path.cwd()
-    #generate_json_schema_header()
     setup_args = {
         "ext_modules": [
             Extension(
                 "cbxp._C",
                 sources=(
                     glob("cbxp/**/*.cpp")
-                    + glob("cbxp/*.cpp")
+                    + [file for file in glob("cbxp/*.cpp") if file != "cbxp/main.cpp"]
                     + ["cbxp/python/_cbxp.c"]
                 ),
                 include_dirs=(

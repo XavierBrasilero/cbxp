@@ -37,6 +37,7 @@
 # Build artifacts
 artifacts
 dist
+cbxp-*
 *egg-info/
 
 # CMake

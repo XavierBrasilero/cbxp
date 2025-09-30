@@ -1,5 +1,4 @@
 #include "cvt.hpp"
-#include "logger.hpp"
 
 #include <cvt.h>
 #include <ihapsa.h>
@@ -8,22 +7,27 @@
 #include <nlohmann/json.hpp>
 #include <string>
 
+#include "logger.hpp"
+
 namespace CBXP {
 nlohmann::json CVT::get() {
-  // PSA starts at address 0
-  struct psa *__ptr32 p_psa = 0;
-  struct cvtmap *__ptr32 p_cvtmap =
-      static_cast<struct cvtmap *__ptr32>(p_psa->flccvt);
-  struct cvtfix *__ptr32 p_cvtfix =
-      static_cast<struct cvtfix *__ptr32>(p_psa->flccvt);
-  struct cvtxtnt2 *__ptr32 p_cvtxtnt2 =
-      static_cast<struct cvtxtnt2 *__ptr32>(p_psa->flccvt);
-  struct cvtvstgx *__ptr32 p_cvtvstgx =
-      static_cast<struct cvtvstgx *__ptr32>(p_psa->flccvt);
+  const struct psa* __ptr32 p_psa = 0;
+  // 'nullPointer' is a false positive because the PSA starts at address 0
+  // cppcheck-suppress-begin nullPointer
+  const struct cvtmap* __ptr32 p_cvtmap =
+      static_cast<struct cvtmap* __ptr32>(p_psa->flccvt);
+  const struct cvtfix* __ptr32 p_cvtfix =
+      static_cast<struct cvtfix* __ptr32>(p_psa->flccvt);
+  const struct cvtxtnt2* __ptr32 p_cvtxtnt2 =
+      static_cast<struct cvtxtnt2* __ptr32>(p_psa->flccvt);
+  const struct cvtvstgx* __ptr32 p_cvtvstgx =
+      static_cast<struct cvtvstgx* __ptr32>(p_psa->flccvt);
+  // cppcheck-suppress-end nullPointer
 
   Logger::getInstance().debug("CVT hex dump:");
-  Logger::getInstance().hexDump(reinterpret_cast<const char *>(p_cvtmap), sizeof(struct cvtmap));
-  
+  Logger::getInstance().hexDump(reinterpret_cast<const char*>(p_cvtmap),
+                                sizeof(struct cvtmap));
+
   // Get fields
   nlohmann::json cvt_json = {};
 
@@ -35,9 +39,9 @@ nlohmann::json CVT::get() {
   cvt_json["cvtbsm0f"]    = formatter_.getHex<uint16_t>(p_cvtmap->cvtbsm0f);
   cvt_json["cvtcsd"]      = formatter_.getHex<uint32_t>(p_cvtmap->cvtcsd);
   cvt_json["cvtctlfg"]    = formatter_.getBitmap<uint8_t>(
-      reinterpret_cast<char *>(&p_cvtmap->cvtctlfg));
+      reinterpret_cast<const char*>(&p_cvtmap->cvtctlfg));
   cvt_json["cvtdcb"] = formatter_.getBitmap<uint8_t>(
-      reinterpret_cast<char *>(&p_cvtmap->cvtdcb));
+      reinterpret_cast<const char*>(&p_cvtmap->cvtdcb));
   cvt_json["cvtdcpa"]  = formatter_.getBitmap<uint32_t>(p_cvtmap->cvtdcpa);
   cvt_json["cvtdfa"]   = formatter_.getHex<uint32_t>(p_cvtmap->cvtdfa);
   cvt_json["cvtecvt"]  = formatter_.getHex<uint32_t>(p_cvtmap->cvtecvt);
@@ -52,7 +56,7 @@ nlohmann::json CVT::get() {
   cvt_json["cvtflag6"] = formatter_.getBitmap<uint32_t>(p_cvtmap->cvtflag6);
   cvt_json["cvtflag7"] = formatter_.getBitmap<uint32_t>(p_cvtmap->cvtflag7);
   cvt_json["cvtflag9"] = formatter_.getBitmap<uint8_t>(
-      reinterpret_cast<char *>(&p_cvtmap->cvtflag9));
+      reinterpret_cast<const char*>(&p_cvtmap->cvtflag9));
   cvt_json["cvtflgbt"] = formatter_.getBitmap<uint32_t>(p_cvtxtnt2->cvtflgbt);
   cvt_json["cvtgda"]   = formatter_.getHex<uint32_t>(p_cvtmap->cvtgda);
   cvt_json["cvtgrsst"] = formatter_.getBitmap<uint32_t>(p_cvtmap->cvtgrsst);
